@@ -15,7 +15,7 @@ author: Team GreenLight
 
 navbar-links:
   Benchmark Analysis: "benchmark"
-  Treatment and Control Matching:
+  Matching:
     - Matching with paper variables: "matching_paper"
     - Propensity Score Matching: "matching_propensity"
   Sensitivity Analysis: "sensitivity"
