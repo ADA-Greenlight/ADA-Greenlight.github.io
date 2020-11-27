@@ -14,11 +14,11 @@ author: Team GreenLight
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Benchmark Analysis: "benchmark"
+  Benchmark Analysis: "benchmark.md"
   Matching:
-    - Matching with paper variables: "matching_paper"
-    - Propensity Score Matching: "matching_propensity"
-  Sensitivity Analysis: "sensitivity"
+    - Matching with paper variables: "matching_paper.md"
+    - Propensity Score Matching: "matching_propensity.md"
+  Sensitivity Analysis: "sensitivity.md"
 
 # --- Logo --- #
 
