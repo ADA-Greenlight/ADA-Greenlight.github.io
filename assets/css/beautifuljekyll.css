@@ -6,16 +6,13 @@ layout: null
 
 /* --- General --- */
 
-html {
-  font-size: 100%
-}
-
 body {
   font-family: 'Lora', 'Times New Roman', serif;
-  font-size: 0.8rem;
-  color: {{ site.text-col | default: "#404040" }};
+  font-size: 18px;
+  color: #404040;
   position: relative;
-  background-color: {{ site.page-col | default: "#FFFFFF" }};
+  background-color: {{ site.page-col }};
+  text-align: justify;
   {% if site.page-img %}
   background-image: url({{ site.page-img | relative_url }});
   background-attachment: fixed;
@@ -23,7 +20,7 @@ body {
 }
 p {
   line-height: 1.5;
-  margin: 0.5rem 0;
+  margin: 30px 0;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
