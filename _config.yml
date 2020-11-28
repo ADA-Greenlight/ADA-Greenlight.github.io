@@ -39,9 +39,9 @@ round-avatar: true
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "hugo.quest@epfl.ch"
+  email: "ada20.greenlight@gmail.com"
   #facebook: deanattali
-  github: h-quest
+  github: ADA-Greenlight
   #twitter: daattali
   #patreon: DeanAttali
   #youtube: c/daattali
@@ -186,7 +186,7 @@ date_format: "%B %-d, %Y"
 # --- You don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Europe/Zurich"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
