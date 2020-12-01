@@ -12,4 +12,7 @@ By how much would θ p have to depart from 0.5 to obtain a P-value above 0.05 so
 
 ![gamma](https://latex.codecogs.com/gif.latex?%5Cfrac%7B1%7D%7B%5CGamma%7D%20%5Cleq%20%5Cfrac%7B%5Cpi_k%20%281%20-%20%5Cpi_k%29%7D%7B%5Cpi_l%20%281%20-%20%5Cpi_l%29%20%7D%20%5Cleq%20%5CGamma)
 
-test formule
+Decomposition of $\Gamma$ :
+![decomposition](https://latex.codecogs.com/gif.latex?%28%20%5CLambda%2C%20%5CDelta%20%29)
+
+
