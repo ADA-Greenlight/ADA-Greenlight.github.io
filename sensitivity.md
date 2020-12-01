@@ -53,9 +53,9 @@ In order to do so, we will need to go further and decompose Gamma into two param
 For each value of Gamma, we can draw a graph of Delta as a function of Lambda.
 
 
-Delta : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
+Delta = shift : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
 pair
 
-Lambda : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
+Lambda =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
 
 
