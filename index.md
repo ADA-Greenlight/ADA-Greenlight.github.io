@@ -9,7 +9,7 @@ subtitle: ADA 2020 Project
 
 ## Matching
 
-# Matching with paper variables
-# Propensity score matching
+### Matching with paper variables
+### Propensity score matching
 
 ## Sensitivity Analysis
