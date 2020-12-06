@@ -7,11 +7,9 @@ subtitle: Housing, Health and Happiness
 
 ### Benchmark Analysis
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="80%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure.html"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
 
 ### Matching
 
