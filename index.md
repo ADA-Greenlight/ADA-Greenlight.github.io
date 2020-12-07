@@ -5,18 +5,14 @@ subtitle: Housing, Health and Happiness
 
 ---
 
-### Benchmark Analysis
+Due to the lack of random assignment to treatment groups in observational studies, omitted variable bias can affect treatment effect estimates. One can therefore question results of regression analyses for such studies, and sensitivity analysis allows to quantify the impact of potential omitted variables. Specifically, in this paper the matching between treatment and control is not fully transparent, and the lack of sensitivity analysis does not allow to measure its performance. In this extension, we propose to conduct a robustness check to verify the paper's results in the form of a sensitivity analysis for various matching methods between treated and control groups, in order to assess the bias needed to change the results significantly. Specifically, a similar matching as proposed in the paper and a propensity score matching are studied.
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
-
-### Matching
+### I. Matching
 
 ## Replicating the paper's matching method
 **L-infinite distance Treatment and Control Matching**
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
 
 Based on the four variables below, minimise the L-infinite distance to match the pairs of control and treatment data points.
 
@@ -30,9 +26,9 @@ Compute the L-infinite distance between each possible pair of treated and contro
 
 ## Propensity score matching
 
-### Sensitivity Analysis
+### II. Sensitivity Analysis
 
-**Assessing the bias needed to change the results**
+## Assessing the bias needed to change the results
 
 In the paper, naive model. They assume that the probability to be trated in 0.5 inside the pair treated control.
 In treatment-control pairs matched, the chance that the first person in pair p is treated is θ p = 1 / 2 under the assumption that treatment assignment is ignorable. What if that assumption is wrong?
@@ -67,12 +63,7 @@ We measure by how much
 that assumption needs to be violated to alter our conclusion that there is a
 significant difference in differences effect on the
 
-
-
-
-
-
-**Amplification of Sensitivity Analysis**
+## Amplification of Sensitivity Analysis**
 
 The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
 
@@ -85,3 +76,10 @@ Delta = shift : strength of the relationship between the unobserved covariate an
 pair
 
 Lambda =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
+
+### III. Regression Analysis
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
+
