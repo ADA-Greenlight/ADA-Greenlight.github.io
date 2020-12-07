@@ -64,7 +64,7 @@ We measure by how much
 that assumption needs to be violated to alter our conclusion that there is a
 significant difference in differences effect on the
 
-## Amplification of Sensitivity Analysis**
+## Amplification of Sensitivity Analysis
 
 The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
 
