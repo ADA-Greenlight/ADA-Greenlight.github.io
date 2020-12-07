@@ -13,8 +13,6 @@ subtitle: Housing, Health and Happiness
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
-
 ### Matching
 
 ## Replicating the paper's matching method
