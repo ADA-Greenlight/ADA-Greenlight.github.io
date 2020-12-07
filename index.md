@@ -7,7 +7,7 @@ subtitle: Housing, Health and Happiness
 
 Due to the lack of random assignment to treatment groups in **observational studies**, omitted variable bias can affect treatment effect estimates. One can therefore question results of regression analyses for such studies, and **sensitivity analysis** allows to quantify the impact of potential **omitted variables**. In the paper 'Housing, Health and Happiness", the matching between treatment and control is not fully transparent, and the lack of sensitivity analysis does not allow to measure its performance. 
 
-In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a similar matching as proposed in the paper and a propensity score matching are studied. Finally, analysis of the regressions carried out in the paper for the different matchings can be carried out.
+In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a **similar matching as proposed in the paper** and a **propensity score matching** are studied. Finally, analysis of the regressions carried out in the paper for the different matchings can be carried out.
 
 ### I. Matching
 
