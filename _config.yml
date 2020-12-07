@@ -14,11 +14,14 @@ author: Louise Aubet, Lucas Gutknecht, Hugo Quest
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Benchmark Analysis: "benchmark"
-  Matching:
-    - Matching with paper variables: "matching_paper"
-    - Propensity Score Matching: "matching_propensity"
-  Sensitivity Analysis: "sensitivity"
+  Resources:
+     - Original Paper: "https://www.aeaweb.org/articles?id=10.1257/pol.1.1.75"
+     - Design of Observation Studies, P. Rosenbaum: "https://www.springer.com/gp/book/9783030464042"
+  #Benchmark Analysis: "benchmark"
+  #Matching:
+  #  - Matching with paper variables: "matching_paper"
+  #  - Propensity Score Matching: "matching_propensity"
+  #Sensitivity Analysis: "sensitivity"
 
 # --- Logo --- #
 
