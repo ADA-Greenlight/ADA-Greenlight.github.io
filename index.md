@@ -5,24 +5,23 @@ subtitle: Housing, Health and Happiness
 
 ---
 
-Due to the lack of random assignment to treatment groups in observational studies, omitted variable bias can affect treatment effect estimates. One can therefore question results of regression analyses for such studies, and sensitivity analysis allows to quantify the impact of potential omitted variables. Specifically, in this paper the matching between treatment and control is not fully transparent, and the lack of sensitivity analysis does not allow to measure its performance. In this extension, we propose to conduct a robustness check to verify the paper's results in the form of a sensitivity analysis for various matching methods between treated and control groups, in order to assess the bias needed to change the results significantly. Specifically, a similar matching as proposed in the paper and a propensity score matching are studied.
+Due to the lack of random assignment to treatment groups in **observational studies**, omitted variable bias can affect treatment effect estimates. One can therefore question results of regression analyses for such studies, and **sensitivity analysis** allows to quantify the impact of potential **omitted variables**. In the paper 'Housing, Health and Happiness", the matching between treatment and control is not fully transparent, and the lack of sensitivity analysis does not allow to measure its performance. In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a similar matching as proposed in the paper and a propensity score matching are studied.
 
 ### I. Matching
 
 ## Replicating the paper's matching method
 **L-infinite distance Treatment and Control Matching**
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
-
-Based on the four variables below, minimise the L-infinite distance to match the pairs of control and treatment data points.
-
-L-infinite distance = maximum of the absolute value of differences between the following four variables for each pair of treatment and control blocks :
+To replicate the paper's matching, the same four variables are used to minimise the L-infinite distance to match the pairs of control and treatment data points.
+The L-infinite distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the L-infinite distance between each possible pair of treated and control data points to obtain the final matching.
 * C_blocksdirtfloor : Proportion blocks of houses with 1+ houses that has dirt floors
 * C_HHdirtfloor : Proportion of households with dirt floors
 * C_child05 : Average number of children between 0-5 yrs
 * C_households : Number of households
 
-Compute the L-infinite distance between each possible pair of treated and control data points.
+The two Figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
 
 ## Propensity score matching
 
