@@ -9,6 +9,8 @@ Due to the lack of random assignment to treatment groups in **observational stud
 
 In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a **similar matching as proposed in the paper** and a **propensity score matching** are studied. Finally, analysis of the regressions carried out in the paper for the different matchings can be carried out.
 
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
+
 ### I. Matching
 
 ## Replicating the paper's matching method
@@ -24,8 +26,6 @@ The L-infinite distance is defined as the maximum of the absolute value of the d
 The two Figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
 
 ## Propensity score matching
 
