@@ -25,6 +25,8 @@ The two Figures below allows to visualise the distribution of control and treatm
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
 
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/Ttest_table.html"></iframe>
+
 ## Propensity score matching
 
 ### II. Sensitivity Analysis
