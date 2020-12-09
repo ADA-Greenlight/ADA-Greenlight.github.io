@@ -9,7 +9,7 @@ Due to the lack of random assignment to treatment groups in **observational stud
 
 In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a **similar matching as proposed in the paper** and a **propensity score matching** are studied. Finally, analysis of the regressions carried out in the paper for the different matchings can be carried out.
 
-### I. The problems with observational studies
+### I. The Problems with Observational Studies
 
 ## Randomised ? 
 
@@ -22,10 +22,9 @@ For observationa studied, the distribution of confounders will therefore typical
 To solve the issue of the confounder distributions, **matching** is performed. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial, and the idea is to match individuals in the treated group with similar individuals in the control group for the covariates.
 However, we can't exactly match on the full set of covariates, so what is often done is try and make sure the distributions are balanced between the groups, known as stochastic balance.
 
-### I. Matching
+### II. The Solution: Matching
 
 ## Replicating the paper's matching method
-**L-infinite distance Treatment and Control Matching**
 
 To replicate the paper's matching, the same four variables are used to minimise the L-infinite distance to match the pairs of control and treatment data points.
 The L-infinite distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the L-infinite distance between each possible pair of treated and control data points to obtain the final matching.
@@ -42,7 +41,7 @@ The two Figures below allows to visualise the distribution of control and treatm
 
 ## Propensity score matching
 
-### II. Sensitivity Analysis
+### III. Sensitivity Analysis
 
 ## Assessing the bias needed to change the results
 
