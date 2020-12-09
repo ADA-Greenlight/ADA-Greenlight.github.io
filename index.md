@@ -19,10 +19,11 @@ However, as it is not always possible to perform a randomized trial (either unet
 
 For observationa studied, the distribution of confounders will therefore typically differ between treatment groups, as it is not a randomised trial. **Confounders** are defined as variables that affect both treatment and outcome, and an important assumption in the estimation of causal effect is the **ignorability assumption**: given pre-treatment covariates, treatment assignment is independent of the potential outcome, also known as the "no unmeasured confounders' assumption".  
 
-To solve the issue of the confounder distributions, **matching** is performed. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial, and the idea is to match individuals in the treated group with similar individuals in the control group for the covariates.
-However, we can't exactly match on the full set of covariates, so what is often done is try and make sure the distributions are balanced between the groups, known as stochastic balance.
 
 ### II. The Solution: Matching
+
+To solve the issue of the confounder distributions, **matching** is performed. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial, and the idea is to match individuals in the treated group with similar individuals in the control group for the covariates.
+However, we can't exactly match on the full set of covariates, so what is often done is try and make sure the distributions are balanced between the groups, known as stochastic balance.
 
 ## Replicating the paper's matching method
 
