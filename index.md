@@ -26,8 +26,7 @@ To be more precise, subjects are self selected to be treated and the treatment a
 
 ### II. The Solution: Matching and Sensitivity Analysis
 
-
-## Theory and background
+## A) Theory and background
 
 ## Matching :
 
@@ -44,16 +43,32 @@ The intuition is that the naive model would be wrong if there exists a confouder
 ![gamma](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%5Cfrac%7B1%7D%7B%5CGamma%7D%20%5Cleq%20%5Cfrac%7B%5Cpi_k%281-%5Cpi_k%29%7D%7B%5Cpi_l%281-%5Cpi_l%29%7D%20%5Cleq%20%5CGamma%20%7D) For example, if Gamma = 3, the odds ratio is comprised between 1/3 and 3, and the probabilty od being treated is comprised between 0.25 and 0.75. 
 
 For each value of Gamma, we use a statistical test with the following hypotheses :
-H_0 : No treatment effect on the model. \\
-H_1 : A treatment effect on the model.
+* H_0 : No treatment effect on the model.
+* H_1 : A treatment effect on the model.
 
-If p-value < 0.05, we can reject the null hypothesis of no treatment effect. We start with Gamma = 1 and then increase its value. Under the null hypothesis, increasing Gamma increases the p-value. Finding the smallest Gamma for which p > 0.05 corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above 0.05 so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain p > 0.05 for Gamma > 6, then the odds of being treayed would need to be 6 times higher for two people with same covariates. Estimating a value for Gamma allows us to evaluate the likelihood of a potential hidden covariate. 
+If p-value < 0.05, we can reject the null hypothesis of no treatment effect. We start with Gamma = 1 and then increase its value. Under the null hypothesis, increasing Gamma increases the p-value. Finding the smallest Gamma for which p > 0.05 corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above 0.05 so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain p > 0.05 for Gamma > 6, then the odds of being treayed would need to be 6 times higher for two people with same covariates. Therefore, estimating a value for Gamma allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
 
-## Analysis of available data
+In practice, we use in this work the _sensitivitymv R_ library and more specifically senmv function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
+
+
+## Amplification of Sensitivity Analysis :
+
+The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
+
+In order to do so, we will need to go further and decompose Gamma into two parameters : ![lambda_delta](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%28%20%5CLambda%20%2C%20%5CDelta%20%29%7D). These parameters are defined by : ![decomposition](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%5CGamma%20%3D%20%5Cfrac%7B%5CLambda%20%5CDelta%20&plus;%201%7D%7B%5CLambda%20&plus;%20%5CDelta%7D%20%7D).
+
+For each value of Gamma, we can draw a graph of Delta as a function of Lambda.
+
+Delta = shift : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
+pair
+
+Lambda =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
+
+## B) Analysis of available data
 
 Check balance prior to matching with SMD for the census variables used for the matching (matching with pre-treatment variables, not with outcomes!)
 
-## Replicating the paper's matching method
+## C) Replicating the paper's matching method
 
 - In the paper them use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
 * C_blocksdirtfloor : Proportion blocks of houses with 1+ houses that has dirt floors
@@ -73,7 +88,7 @@ The two Figures below allows to visualise the distribution of control and treatm
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
 
-## Propensity score matching
+## D) Propensity score matching
 
 We want that the two samples of the pair have the same probability to be treated pi as defined below. 
 -> add formula of pi from the course.
@@ -83,45 +98,34 @@ In practice :
 - construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
 - we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity. 
 
-### III. Sensitivity Analysis
 
-## Assessing the bias needed to change the results
-
-
-
-Sensitivity analysis on the matching of the paper :
-
-* Specify the outcomes that we want to test.
-* Using sensitivitymv R library (more specifically senmv function), find the gamma for which the p-value is superior to 0.05. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
-
-
- 
-
-
-Sensitivity analysis is a way of quantifying how would the results of our calculations change if the assumptions were violated by a limited amount.
-Similar to the ... analysis of dynamical systems. Change the input by a little amount and look at the output.
-
-We measure by how much
-that assumption needs to be violated to alter our conclusion that there is a
-significant difference in differences effect on the
-
-## Amplification of Sensitivity Analysis
-
-The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
-
-In order to do so, we will need to go further and decompose Gamma into two parameters : ![lambda_delta](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%28%20%5CLambda%20%2C%20%5CDelta%20%29%7D). These parameters are defined by : ![decomposition](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%5CGamma%20%3D%20%5Cfrac%7B%5CLambda%20%5CDelta%20&plus;%201%7D%7B%5CLambda%20&plus;%20%5CDelta%7D%20%7D).
-
-For each value of Gamma, we can draw a graph of Delta as a function of Lambda.
-
-
-Delta = shift : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
-pair
-
-Lambda =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
-
-### III. Regression Analysis
+### Regression Analysis : -> à changer de place
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
+
+
+### IV. Conclusion
+
+Answer the research questions :
+* Most important variables in the data set in terms of predicting power for the studied models : ...
+    
+* Potential bias to alter the conclusions of the study :
+The method of the paper is very sensible to small bias. And even more, by following their method and applying sensitivity analysis, we can put into question their final results.
+
+* Would propensity score matching (or another matching method) improve the accuracy of the results ?
+It seems that propensity score improves the results.
+Put into question the matching in the study.
+Criticise the lack of pre-matching data, as we cannot really verify their matching methods (not fully transparent). Here we can clearly say that their matching is not good but we cannot clearly saying if their results are significant.
+
+
+### Resources 
+
+ * Paul R. Rosenbaum, _Design of observational studies_, Springer series in Statistics. 2010
+ * Paul R. Rosenbaum, _Observation & Experiment : An Introduction to Causal Inference_, Harvard University Press, 2017  
+ * Paul R. Rosenbaum, _Sensitivity Analysis in Observational Studies_, Encyclopedia of Statistics in Behavioral Science (Vol.4), 2005
+ * C. A. Hosman et al., _The Sensitivity of Linear Regression Coefficients' Confidence Limits to the Omission of a Cofounder_, The Annals of Applied Statistics (Vol.4), 2010
+ * Paul R. Rosenbaum, _Package ‘sensitivitymv’_, 2018
+ 
 
