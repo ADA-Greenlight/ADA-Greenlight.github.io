@@ -12,6 +12,7 @@ layout: base
         <div class="before-content">
           {% for file in page.before-content %}
             {% include {{ file }} %}
+            {% include toc.html html=content %}
           {% endfor %}
         </div>
       {% endif %}
