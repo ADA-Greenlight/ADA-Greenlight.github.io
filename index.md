@@ -23,33 +23,64 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 -> si on veut ajouter des graphes on peut mettre un schéma graphe comme dans le cours pour illustrer l'effet du confounder sur treatment and outcome.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-### II. The Solution: Matching
+### II. A Solution: Matching
 
 ## A) Theory and background
-
-## Matching :
 
 To solve the issue of the difference in variables distribution between control and treatment group, **matching** is performed. The idea is to match individuals in the treated group with similar individuals in the control group for the covariates. In the ideal case, we would like to find for each sample in the treatment group, an identical sample in the control group in terms of pre-treatment covariates. This is generally impossible but fortunately, finding similar sample in the control group is enough. The condition is that the two samples in the matched pair have probability of receiving the treatment is as close as possible. 
 This is not an exact matching as the paired samples can be slightly diffferent but the overall distribution of each pre-treatment variable is balanced between the groups, this is known as stochastic balance. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial. It enables a comparison of outcomes among treated and control samples to estimate the effect of the treatment and reducing the bias due to a potential confounder. Matching can be done in different ways.
 
+## B) Replicating the paper's matching method
+
+In the paper they use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
+* C_blocksdirtfloor : Proportion of blocks of houses with houses that has dirt floors
+* C_HHdirtfloor : Proportion of households with dirt floors
+* C_child05 : Average number of children between 0-5 years
+* C_households : Number of households
+They are matching on the observed covaraites. The idea is to minimise the L-infinite distance to match the pairs of control and treatment data points. The L-infinite distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the L-infinite distance between each possible pair of treated and control data points and minimise to obtain the final matching.
+
+In practice :
+- construct bipartite graph : node = sample, treated samples on one hand and control samples on the other hand. 
+Edge = links one control and one treated sample, weighted with the L-infinite norm.
+- Aim : minimise the norm over the matching. So the algorithms finds the best matched pairs such that the norm is minimum.
+
+The two Figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
+
+## C) Propensity score matching
+
+We want that the two samples of the pair have the same probability to be treated pi as defined below. 
+-> add formula of pi from the course.
+Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $x$ but total treatment and control groups will have the same distribution. 
+
+In practice :
+- construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
+- we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 ### III. Sensitivity Analysis
+
+## A) Theory and background
 
 Matching can improve the veracity of the results. It ensures that similar samples are compared, i.e. they are similar in terms of observed variables. Nevertheless, there might be some unobserved covariates that highly differ between the two samples. In other words, a **naive model** assumes that the probability to be trated was 0.5 inside the pairs treated-control. However, there might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
 
-" In treatment-control pairs matched, the chance that the first person in pair p is treated is θ = 1/2 under the assumption that treatment assignment is ignorable. What if that assumption is wrong ? " citation de Rosenbaum, _Observation and experiment_
+" In treatment-control pairs matched, the chance that the first person in pair p is treated is $\theta = 0.5$ under the assumption that treatment assignment is ignorable. What if that assumption is wrong ? " citation de Rosenbaum, _Observation and experiment_
 
-The intuition is that the naive model would be wrong if there exists a confouder sufficiently important to modify the probability of being treated by a huge amount. Let's be more precise. The models assumes that the odds of two similar data points (i.e. very similar observed covariates) are bounded by a factor Gamma :
-![gamma](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%5Cfrac%7B1%7D%7B%5CGamma%7D%20%5Cleq%20%5Cfrac%7B%5Cpi_k%281-%5Cpi_k%29%7D%7B%5Cpi_l%281-%5Cpi_l%29%7D%20%5Cleq%20%5CGamma%20%7D) For example, if Gamma = 3, the odds ratio is comprised between 1/3 and 3, and the probabilty of being treated is comprised between 0.25 and 0.75. 
+The intuition is that the naive model would be wrong if there exists a confouder sufficiently important to modify the probability of being treated by a huge amount. Let's be more precise. The models assumes that the odds of two similar data points (i.e. very similar observed covariates) are bounded by a factor $\Gamma$ : $ \frac{1}{\Gamma} \leq \frac{\pi_k(1 - \pi_k)}{\pi_l(1 - \pi_l)} \leq \Gamma $. For example, if $\Gamma = 3$, the odds ratio is comprised between $1/3$ and $3$, and the probabilty of being treated is comprised between $0.25$ and $0.75$. 
 
 For each value of Gamma, we use a statistical test with the following hypotheses :
-* H_0 : No treatment effect on the model.
-* H_1 : A treatment effect on the model.
+* $H_0$ : No treatment effect on the model.
+* $H_1$ : A treatment effect on the model.
 
-If p-value < 0.05, we can reject the null hypothesis H_0 of no treatment effect. We start with Gamma = 1 and then increase its value. Under the null hypothesis, increasing Gamma increases the p-value. Finding the smallest Gamma for which p > 0.05 corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above 0.05 so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain p > 0.05 for Gamma > 6, then the odds of being treated would need to be 6 times higher for two people with same covariates. Therefore, estimating a value for Gamma allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
+If p-value < 0.05, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
 
 In practice, we use in this work the _sensitivitymv R_ library and more specifically senmv function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
-
 
 ## Amplification of Sensitivity Analysis :
 
@@ -67,36 +98,6 @@ Lambda =strength : strength of the relationship between the unobserved covariate
 ## B) Analysis of available data
 
 Check balance prior to matching with SMD for the census variables used for the matching (matching with pre-treatment variables, not with outcomes!)
-
-## C) Replicating the paper's matching method
-
-- In the paper they use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
-* C_blocksdirtfloor : Proportion blocks of houses with 1+ houses that has dirt floors
-* C_HHdirtfloor : Proportion of households with dirt floors
-* C_child05 : Average number of children between 0-5 yrs
-* C_households : Number of households
-They are matching on the observed covaraites. The idea is to minimise the L-infinite distance to match the pairs of control and treatment data points. The L-infinite distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the L-infinite distance between each possible pair of treated and control data points and minimise to obtain the final matching.
-
-In practice :
-- construct bipartite graph : node = sample, treated samples on one hand and control samples on the other hand. 
-Edge = links one control and one treated sample, weighted with the L-infinite norm.
-- Aim : minimise the norm over the matching. So the algorithms finds the best matched pairs such that the norm is minimum.
-
-The two Figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/ttest_table.html"></iframe>
-
-## D) Propensity score matching
-
-We want that the two samples of the pair have the same probability to be treated pi as defined below. 
--> add formula of pi from the course.
-Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal x but total treatment and control groups will have the same distribution. 
-
-In practice :
-- construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
-- we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity. 
 
 
 ## Regression Analysis : -> à changer de place
