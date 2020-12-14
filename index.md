@@ -124,9 +124,13 @@ Criticise the lack of pre-matching data, as we cannot really verify their matchi
 ### Resources 
 
  [^1] [Paul R. Rosenbaum, _Design of observational studies_, Springer series in Statistics. 2010](https://www.springer.com/gp/book/9783030464042)
+ 
  [^2] [Paul R. Rosenbaum, _Observation & Experiment : An Introduction to Causal Inference_, Harvard University Press, 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/insr.12259)
+ 
  [^3] [Paul R. Rosenbaum, _Sensitivity Analysis in Observational Studies_, Encyclopedia of Statistics in Behavioral Science (Vol.4), 2005](https://onlinelibrary.wiley.com/doi/abs/10.1002/0470013192.bsa606)
+ 
  [^4] [C. A. Hosman et al., _The Sensitivity of Linear Regression Coefficients' Confidence Limits to the Omission of a Cofounder_, The Annals of Applied Statistics (Vol.4), 2010](https://arxiv.org/pdf/0905.3463.pdf)
+ 
  [^5] [Paul R. Rosenbaum, _Package ‘sensitivitymv’_, 2018](https://cran.r-project.org/web/packages/sensitivitymv/sensitivitymv.pdf)
  
 
