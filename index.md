@@ -35,18 +35,18 @@ This is not an exact matching as the paired samples can be slightly diffferent b
 
 ## Sensitivity Analysis :
 
-Matching can improve the veracity of the results. Matching ensures that similar samples are compared. In fact, these samples look similar, i.e. they are similar in terms of observed variables. There might be some unobserved covariates that highly differ between the two samples. In other words, the naive model assumed that the  probability to be trated was 0.5 inside the pair treated-control. There might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
+Matching can improve the veracity of the results. It ensures that similar samples are compared, i.e. they are similar in terms of observed variables. Nevertheless, there might be some unobserved covariates that highly differ between the two samples. In other words, a **naive model** assumes that the probability to be trated was 0.5 inside the pairs treated-control. However, there might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
 
 " In treatment-control pairs matched, the chance that the first person in pair p is treated is θ = 1/2 under the assumption that treatment assignment is ignorable. What if that assumption is wrong ? " citation de Rosenbaum, _Observation and experiment_
 
 The intuition is that the naive model would be wrong if there exists a confouder sufficiently important to modify the probability of being treated by a huge amount. Let's be more precise. The models assumes that the odds of two similar data points (i.e. very similar observed covariates) are bounded by a factor Gamma :
-![gamma](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%5Cfrac%7B1%7D%7B%5CGamma%7D%20%5Cleq%20%5Cfrac%7B%5Cpi_k%281-%5Cpi_k%29%7D%7B%5Cpi_l%281-%5Cpi_l%29%7D%20%5Cleq%20%5CGamma%20%7D) For example, if Gamma = 3, the odds ratio is comprised between 1/3 and 3, and the probabilty od being treated is comprised between 0.25 and 0.75. 
+![gamma](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%5Cfrac%7B1%7D%7B%5CGamma%7D%20%5Cleq%20%5Cfrac%7B%5Cpi_k%281-%5Cpi_k%29%7D%7B%5Cpi_l%281-%5Cpi_l%29%7D%20%5Cleq%20%5CGamma%20%7D) For example, if Gamma = 3, the odds ratio is comprised between 1/3 and 3, and the probabilty of being treated is comprised between 0.25 and 0.75. 
 
 For each value of Gamma, we use a statistical test with the following hypotheses :
 * H_0 : No treatment effect on the model.
 * H_1 : A treatment effect on the model.
 
-If p-value < 0.05, we can reject the null hypothesis of no treatment effect. We start with Gamma = 1 and then increase its value. Under the null hypothesis, increasing Gamma increases the p-value. Finding the smallest Gamma for which p > 0.05 corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above 0.05 so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain p > 0.05 for Gamma > 6, then the odds of being treayed would need to be 6 times higher for two people with same covariates. Therefore, estimating a value for Gamma allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
+If p-value < 0.05, we can reject the null hypothesis H_0 of no treatment effect. We start with Gamma = 1 and then increase its value. Under the null hypothesis, increasing Gamma increases the p-value. Finding the smallest Gamma for which p > 0.05 corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above 0.05 so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain p > 0.05 for Gamma > 6, then the odds of being treated would need to be 6 times higher for two people with same covariates. Therefore, estimating a value for Gamma allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
 
 In practice, we use in this work the _sensitivitymv R_ library and more specifically senmv function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
 
@@ -70,7 +70,7 @@ Check balance prior to matching with SMD for the census variables used for the m
 
 ## C) Replicating the paper's matching method
 
-- In the paper them use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
+- In the paper they use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
 * C_blocksdirtfloor : Proportion blocks of houses with 1+ houses that has dirt floors
 * C_HHdirtfloor : Proportion of households with dirt floors
 * C_child05 : Average number of children between 0-5 yrs
