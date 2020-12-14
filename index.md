@@ -24,6 +24,13 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 -> si on veut ajouter des graphes on peut mettre un schéma graphe comme dans le cours pour illustrer l'effet du confounder sur treatment and outcome.
 
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/InitialSMD.html"></iframe>
+
+To assess whether balance is achieved between treatment and control, we can look at standardized mean differences (SMD), which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
+
+$\mathrm{SMD} = \frac{\bar{X}_{t} - \bar{X}_{c}}{\sqrt{(s^{2}_{t} + s^{2}_{c})/2}}$ where ...
+
+We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a t-test). The above graph shows the SMD value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced. 
 
 ### II. A Solution: Matching
 
@@ -31,8 +38,6 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 To solve the issue of the difference in variables distribution between control and treatment group, **matching** is performed. The idea is to match individuals in the treated group with similar individuals in the control group for the covariates. In the ideal case, we would like to find for each sample in the treatment group, an identical sample in the control group in terms of pre-treatment covariates. This is generally impossible but fortunately, finding similar sample in the control group is enough. The condition is that the two samples in the matched pair have probability of receiving the treatment is as close as possible. 
 This is not an exact matching as the paired samples can be slightly diffferent but the overall distribution of each pre-treatment variable is balanced between the groups, this is known as stochastic balance. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial. It enables a comparison of outcomes among treated and control samples to estimate the effect of the treatment and reducing the bias due to a potential confounder. Matching can be done in different ways.
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/InitialSMD.html"></iframe>
 
 ## B) Replicating the paper's matching method
 
