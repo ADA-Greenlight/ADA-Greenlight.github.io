@@ -26,11 +26,19 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/InitialSMD.html"></iframe>
 
+We can start by analysing the distribution and properties of the variables from the $2000$ Census, which are the pre-treatment variables. In the dataset, they correspond to the variables beginning in 'C_'. Following their results given in Table 2, we can compute the mean values of treatment and control, as well as the mean difference by aggregating at census block level. In the paper, this is what they use as evidence to show that the data is balanced with their matching, so it is interesting to check these results by replicating this table. 
+-> no statistical test so we apply a statistical test to check wether the variables or balanced or not
+
 To assess whether balance is achieved between treatment and control, we can look at standardized mean differences (SMD), which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
 
-$\mathrm{SMD} = \frac{\bar{X}_{t} - \bar{X}_{c}}{\sqrt{(s^{2}_{t} + s^{2}_{c})/2}}$ where ...
+$\mathrm{SMD} = \frac{\bar{X}_{t} - \bar{X}_{c}}{\sqrt{(s^{2}_{t} + s^{2}_{c})/2}}$ where $\bar{X}_{t}$, $\bar{X}_{c}$ denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
 
-We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a t-test). The above graph shows the SMD value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced. 
+We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a t-test) :
+* $< 0.1$ : For a randomized trial, the smd between all of the covariates should typically fall into this bucket.
+* $0.1 - 0.2$ : Not necessarily balanced, but small enough that people are usually not too worried about them. Sometimes, even after performing matching, there might still be a few covariates whose smd fall under this range.
+* $> 0.2$ : Values that are greater than this threshold are considered seriously imbalanced.
+
+The above graph shows the SMD value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced. 
 
 ### II. A Solution: Matching
 
