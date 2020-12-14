@@ -49,7 +49,7 @@ The edges link one control and one treated sample, weighted with the $L_{\infty}
 
 ## C) Propensity score matching
 
-Another of matching samples uses what is called propensity scores. We want that the two samples of the pair have the same probability to be treated $ \pi_{l} = \mathbb{P}(Z_{l} = 1 | r_{Cl}, r_{Tl}, \bold{x}_{l}, u_{l})$, with $Z_l$ the treatment, $r_{Cl}$ ..., $r_{Tl}$ ... , $\bold{x}_{l}$ ..., $u_{l}$ ....
+Another of matching samples uses what is called propensity scores. We want that the two samples of the pair have the same probability to be treated $\pi_{l} = \mathbb{P}(Z_{l} = 1 \mid r_{Cl}, r_{Tl}, \bold{x}_{l}, u_{l})$, with $Z_l$ the treatment, $r_{Cl}$ ..., $r_{Tl}$ ... , $\bold{x}_{l}$ ..., $u_{l}$ ....
 Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $\bold{x}$ but total treatment and control groups will have the same distribution. 
 
 In practice, we construct bipartite graph as explained above for the matching of the paper. The edges are now weighted with the difference of similarity score. The similarity is defined as $1 - $ the difference of propensity score. We want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. The algotihm find the matching that miximises the overall similarity.
@@ -70,7 +70,7 @@ The figure below illustrates the distribution of the propensity scores before an
 
 Matching can improve the veracity of the results. It ensures that similar samples are compared, i.e. they are similar in terms of observed variables. Nevertheless, there might be some unobserved covariates that highly differ between the two samples. In other words, a **naive model** assumes that the probability to be trated was $0.5$ inside the pairs treated-control. However, there might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
 
-> "In treatment-control pairs matched, the chance that the first person in pair p is treated is $\theta = 0.5$ under the assumption that treatment assignment is ignorable. What if that assumption is wrong ?" Paul R. Rosenbaum, _Observation and experiment_
+> "In treatment-control pairs matched, the chance that the first person in pair $p$ is treated is $\theta_{p} = 0.5$ under the assumption that treatment assignment is ignorable. What if that assumption is wrong ?" Paul R. Rosenbaum, _Observation and experiment_
 
 The intuition is that the naive model would be wrong if there exists a confouder sufficiently important to modify the probability of being treated by a huge amount. Let's be more precise. The model assumes that the odds of two similar data points (i.e. very similar observed covariates) are bounded by a factor $\Gamma$ : $ \frac{1}{\Gamma} \leq \frac{\pi_k(1 - \pi_k)}{\pi_l(1 - \pi_l)} \leq \Gamma $. For example, if $\Gamma = 3$, the odds ratio is comprised between $1/3$ and $3$, and the probabilty of being treated is comprised between $0.25$ and $0.75$. 
 
@@ -78,31 +78,32 @@ For each value of Gamma, we use a statistical test with the following hypotheses
 * $H_0$ : No treatment effect on the model.
 * $H_1$ : A treatment effect on the model.
 
-If p-value < 0.05, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from $0.5$ to obtain a $p$-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
+If the $p$-value $< 0.05$, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from $0.5$ to obtain a $p$-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
 
-In practice, we use in this work the `sensitivitymv` R library and more specifically `senmv` function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Gamma_fig.html"></iframe>
+In practice, we use in this work the `sensitivitymv` R library and more specifically `senmv` function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomised one.
 
 ## Amplification of Sensitivity Analysis :
 
 The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
 
-In order to do so, we will need to go further and decompose Gamma into two parameters : ![lambda_delta](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%28%20%5CLambda%20%2C%20%5CDelta%20%29%7D). These parameters are defined by : ![decomposition](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%5CGamma%20%3D%20%5Cfrac%7B%5CLambda%20%5CDelta%20&plus;%201%7D%7B%5CLambda%20&plus;%20%5CDelta%7D%20%7D).
+In order to do so, we will need to go further and decompose $\Gamma$ into two parameters : $(\Lambda, \Delta)$. These parameters are defined by : $\Gamma = \frac{\Lambda \Delta + 1}{\Lambda + \Delta}$. For each value of $\Gamma$, we can draw a graph of $\Delta$ as a function of $\Lambda$.
 
-For each value of Gamma, we can draw a graph of Delta as a function of Lambda.
+$\Delta$ is called the shift. It represents the strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
+pair. $\Lambda$ is called the strength and evaluates the strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment. Thus $\Delta$ represents more the ... whereas $\Lambda$ represents more ... . -> à éclaircir !!
 
-Delta = shift : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
-pair
+## B) Sensitivity analysis of the different matchings
 
-Lambda =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
+The figure below shows the results in terms of value of $\Gamma$ for the different matchings : the matching of the paper using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity matching with all the variables performs overall a little bit worse than the two other matchings.
 
-## B) Analysis of available data
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Gamma_fig.html"></iframe>
+
+
+
+## Analysis of available data -> à changer de place ?
 
 Check balance prior to matching with SMD for the census variables used for the matching (matching with pre-treatment variables, not with outcomes!)
 
-
-## Regression Analysis : -> à changer de place
+## Regression Analysis
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
 
@@ -115,12 +116,13 @@ Answer the research questions :
 * Most important variables in the data set in terms of predicting power for the studied models : ...
     
 * Potential bias to alter the conclusions of the study :
-The method of the paper is very sensible to small bias. And even more, by following their method and applying sensitivity analysis, we can put into question their final results.
+The method of the paper is ... to small/high bias.
+This method allowed us to study the robustness of the results.
+This paper wasn't containing any statistical test. 
 
 * Would propensity score matching (or another matching method) improve the accuracy of the results ?
-It seems that propensity score improves the results.
-Put into question the matching in the study.
-Criticise the lack of pre-matching data, as we cannot really verify their matching methods (not fully transparent). Here we can clearly say that their matching is not good but we cannot clearly saying if their results are significant.
+It seems that propensity score doesn't improve the results.
+
 
 
 ### Resources 
