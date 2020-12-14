@@ -5,7 +5,7 @@ subtitle: Housing, Health and Happiness
 
 ---
 
-$ alpha = 2$
+$ \alpha = 2$
 
 Due to the lack of random assignment to treatment groups in **observational studies**, omitted variable bias can affect treatment effect estimates. One can therefore question results of regression analyses for such studies, and **sensitivity analysis** allows to quantify the impact of potential **omitted variables**. In the paper 'Housing, Health and Happiness', the matching between treatment and control is not fully transparent, and the lack of sensitivity analysis does not allow to measure its performance. 
 
