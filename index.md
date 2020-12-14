@@ -9,13 +9,13 @@ Due to the lack of random assignment to treatment groups in **observational stud
 
 In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a **similar matching as proposed in the paper** and a **propensity score matching** are studied. Finally, analysis of the regressions carried out in the paper for the different matchings can be carried out.
 
-Context : In the paper 'Housing, Health and Happiness', the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to 50m² of cement floor. It was established by the Mexican government in 2000 in the State of Coahuila first then in 2004 in the state of Durango. The study observes the evolution of two populations in two twin cities : Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps : verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
+Context : In the paper 'Housing, Health and Happiness', the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to $50$ m$^{2}$ of cement floor. It was established by the Mexican government in $2000$ in the State of Coahuila first then in $2004$ in the state of Durango. The study observes the evolution of two populations in two twin cities : Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps : verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
 
 ### I. The Problems with Observational Studies
 
 ## Randomised ? 
 
-In an ideal randomised trial, the treatment assignment would be randomly decided (equivalent to a 50/50 coin flip). Therefore, if we assume the trial is actually randomised, the distribution of our covariates will be the same in both groups, i.e. the covariates are said to be balanced. In this case, the control and treatment groups are indistinguishable. Thus, if the outcome between different treatment groups end up differing, it will not be because of differences in the covariates defining the groups, it will be because of the treatment.
+In an ideal randomised trial, the treatment assignment would be randomly decided (equivalent to a $50/50$ coin flip). Therefore, if we assume the trial is actually randomised, the distribution of our covariates will be the same in both groups, i.e. the covariates are said to be balanced. In this case, the control and treatment groups are indistinguishable. Thus, if the outcome between different treatment groups end up differing, it will not be because of differences in the covariates defining the groups, it will be because of the treatment.
 
 However, as it is not always possible to perform a randomised trial (either unethical, impractical, too expensive, ...), **observational studies** are conducted, where there is no intervention in the treatment assignment and retrospective data is observed. This is the case of the 'Housing, Health and Happiness' paper. Indeed, data is collected from census and surveys a posteriori and the researchers cannot control the conditions under which samples are distributed. This might lead to a potential problem as the decision of which subjects receive the treatment is not entirely random and thus a potential source of bias.
 
@@ -23,7 +23,6 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 -> si on veut ajouter des graphes on peut mettre un schéma graphe comme dans le cours pour illustrer l'effet du confounder sur treatment and outcome.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 ### II. A Solution: Matching
 
@@ -34,19 +33,19 @@ This is not an exact matching as the paired samples can be slightly diffferent b
 
 ## B) Replicating the paper's matching method
 
-In the paper they use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
+In the paper they use an $L_{\infty}$ norm : the pairs are created based on $4$ pre-treatment variables : 
 * C_blocksdirtfloor : Proportion of blocks of houses with houses that has dirt floors
 * C_HHdirtfloor : Proportion of households with dirt floors
 * C_child05 : Average number of children between 0-5 years
 * C_households : Number of households
-They are matching on the observed covaraites. The idea is to minimise the L-infinite distance to match the pairs of control and treatment data points. The L-infinite distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the L-infinite distance between each possible pair of treated and control data points and minimise to obtain the final matching.
+They are matching on the observed covaraites. The idea is to minimise the $L_{\infty}$ distance to match the pairs of control and treatment data points. The $L_{\infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{\infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
 
 In practice :
 - construct bipartite graph : node = sample, treated samples on one hand and control samples on the other hand. 
 Edge = links one control and one treated sample, weighted with the L-infinite norm.
 - Aim : minimise the norm over the matching. So the algorithms finds the best matched pairs such that the norm is minimum.
 
-The two Figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
+The two figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="500" allowfullscreen="true" src="assets/img/boxplot_figure.html"></iframe>
 
@@ -54,15 +53,14 @@ The two Figures below allows to visualise the distribution of control and treatm
 
 ## C) Propensity score matching
 
-We want that the two samples of the pair have the same probability to be treated pi as defined below. 
+We want that the two samples of the pair have the same probability to be treated $\pi$ as defined below. $\pi = \mathbb{P}( | )$  
 -> add formula of pi from the course.
 Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $x$ but total treatment and control groups will have the same distribution. 
 
 In practice :
 - construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
 - we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ 
 
 ### III. Sensitivity Analysis
 
@@ -78,7 +76,7 @@ For each value of Gamma, we use a statistical test with the following hypotheses
 * $H_0$ : No treatment effect on the model.
 * $H_1$ : A treatment effect on the model.
 
-If p-value < 0.05, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
+If p-value < 0.05, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from 0.5 to obtain a $p$-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
 
 In practice, we use in this work the _sensitivitymv R_ library and more specifically senmv function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
 
@@ -86,14 +84,14 @@ In practice, we use in this work the _sensitivitymv R_ library and more specific
 
 The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
 
-In order to do so, we will need to go further and decompose Gamma into two parameters : ![lambda_delta](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%20%28%20%5CLambda%20%2C%20%5CDelta%20%29%7D). These parameters are defined by : ![decomposition](https://latex.codecogs.com/gif.latex?%5Cmathbf%7B%5CGamma%20%3D%20%5Cfrac%7B%5CLambda%20%5CDelta%20&plus;%201%7D%7B%5CLambda%20&plus;%20%5CDelta%7D%20%7D).
+In order to do so, we will need to go further and decompose Gamma into two parameters : $(\Lambda, \Delta)$. These parameters are defined by : $ \Gamma = \frac{\Lambda \Delta +1}{\Lambda + \Delta}$.
 
-For each value of Gamma, we can draw a graph of Delta as a function of Lambda.
+For each value of Gamma, we can draw a graph of Delta as a function of $\Lambda$.
 
-Delta = shift : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
+$\Delta$ = shift : strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
 pair
 
-Lambda =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
+$\Lambda$ =strength : strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment.
 
 ## B) Analysis of available data
 
