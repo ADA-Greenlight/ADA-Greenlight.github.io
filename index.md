@@ -9,7 +9,7 @@ Due to the lack of random assignment to treatment groups in **observational stud
 
 In this extension, we propose to conduct a robustness check to verify the matching through a sensitivity analysis for various matching methods, in order to assess the bias needed to change the results significantly. Specifically, a **similar matching as proposed in the paper** and a **propensity score matching** are studied. Finally, analysis of the regressions carried out in the paper for the different matchings can be carried out.
 
-Context : In the paper 'Housing, Health and Happiness', the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to 50m² of cement floor. It was established by the Mexican government in 2000 in the State of Coahuila first then in 2004 in the state of Durango. The study observes the evolution of two populations in two twin cities : Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps : verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
+Context : In the paper 'Housing, Health and Happiness', the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to 50m² of cement floor. It was established by the Mexican government in $2000$ in the State of Coahuila first then in $2004$ in the state of Durango. The study observes the evolution of two populations in two twin cities : Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps : verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
 
 ### I. The Problems with Observational Studies
 
@@ -34,16 +34,16 @@ This is not an exact matching as the paired samples can be slightly diffferent b
 
 ## B) Replicating the paper's matching method
 
-In the paper they use an L-infinite norm : the pairs are created based on 4 pre-treatment variables : 
+In the paper they use an $L_{infty}$ norm : the pairs are created based on 4 pre-treatment variables : 
 * C_blocksdirtfloor : Proportion of blocks of houses with houses that has dirt floors
 * C_HHdirtfloor : Proportion of households with dirt floors
-* C_child05 : Average number of children between 0-5 years
+* C_child05 : Average number of children between $0$ and $5$ years
 * C_households : Number of households
-They are matching on the observed covaraites. The idea is to minimise the L-infinite distance to match the pairs of control and treatment data points. The L-infinite distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the L-infinite distance between each possible pair of treated and control data points and minimise to obtain the final matching.
+They are matching on the observed covaraites. The idea is to minimise the $L_{infty}$ distance to match the pairs of control and treatment data points. The $L_{infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
 
 In practice :
 - construct bipartite graph : node = sample, treated samples on one hand and control samples on the other hand. 
-Edge = links one control and one treated sample, weighted with the L-infinite norm.
+Edge = links one control and one treated sample, weighted with the $L_{infty}$ norm.
 - Aim : minimise the norm over the matching. So the algorithms finds the best matched pairs such that the norm is minimum.
 
 The two Figures below allows to visualise the distribution of control and treatment data before and after the matching. No significant difference are observed.
@@ -54,8 +54,7 @@ The two Figures below allows to visualise the distribution of control and treatm
 
 ## C) Propensity score matching
 
-We want that the two samples of the pair have the same probability to be treated pi as defined below. 
--> add formula of pi from the course.
+We want that the two samples of the pair have the same probability to be treated $\pi_l = \mathbb{P}(Z_l = 1 | r_{Cl}, r_{Tl}, \bold{x}_l, u_l)$ as defined below.
 Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $x$ but total treatment and control groups will have the same distribution. 
 
 In practice :
@@ -68,7 +67,7 @@ In practice :
 
 ## A) Theory and background
 
-Matching can improve the veracity of the results. It ensures that similar samples are compared, i.e. they are similar in terms of observed variables. Nevertheless, there might be some unobserved covariates that highly differ between the two samples. In other words, a **naive model** assumes that the probability to be trated was 0.5 inside the pairs treated-control. However, there might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
+Matching can improve the veracity of the results. It ensures that similar samples are compared, i.e. they are similar in terms of observed variables. Nevertheless, there might be some unobserved covariates that highly differ between the two samples. In other words, a **naive model** assumes that the probability to be trated was $0.5$ inside the pairs treated-control. However, there might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
 
 " In treatment-control pairs matched, the chance that the first person in pair p is treated is $\theta = 0.5$ under the assumption that treatment assignment is ignorable. What if that assumption is wrong ? " citation de Rosenbaum, _Observation and experiment_
 
@@ -78,7 +77,7 @@ For each value of Gamma, we use a statistical test with the following hypotheses
 * $H_0$ : No treatment effect on the model.
 * $H_1$ : A treatment effect on the model.
 
-If p-value < 0.05, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from 0.5 to obtain a p-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
+If p-value < 0.05, we can reject the null hypothesis $H_0$ of no treatment effect. We start with $\Gamma = 1$ and then increase its value. Under the null hypothesis, increasing $\Gamma$ increases the $p$-value. Finding the smallest $\Gamma$ for which $p > 0.05$ corresponds to finding by how much would the probability have to depart from $0.5$ to obtain a $p$-value above $0.05$ so that the hypothesis of no treatment effect cannot be rejected. For example, if we obtain $p > 0.05$ for $\Gamma > 6$, then the odds of being treated would need to be $6$ times higher for two people with same covariates. Therefore, estimating a value for $\Gamma$ allows us to evaluate the likelihood of a potential hidden covariate and the consequence of this covariate on the results.
 
 In practice, we use in this work the _sensitivitymv R_ library and more specifically senmv function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomized one.
 
@@ -123,14 +122,14 @@ Criticise the lack of pre-matching data, as we cannot really verify their matchi
 
 ### Resources 
 
- * [Paul R. Rosenbaum, _Design of observational studies_, Springer series in Statistics. 2010](https://www.springer.com/gp/book/9783030464042)
+ [^1] [Paul R. Rosenbaum, _Design of observational studies_, Springer series in Statistics. 2010](https://www.springer.com/gp/book/9783030464042)
  
- * [Paul R. Rosenbaum, _Observation & Experiment : An Introduction to Causal Inference_, Harvard University Press, 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/insr.12259)
+ [^2] [Paul R. Rosenbaum, _Observation & Experiment : An Introduction to Causal Inference_, Harvard University Press, 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/insr.12259)
  
- * [Paul R. Rosenbaum, _Sensitivity Analysis in Observational Studies_, Encyclopedia of Statistics in Behavioral Science (Vol.4), 2005](https://onlinelibrary.wiley.com/doi/abs/10.1002/0470013192.bsa606)
+ [^3] [Paul R. Rosenbaum, _Sensitivity Analysis in Observational Studies_, Encyclopedia of Statistics in Behavioral Science (Vol.4), 2005](https://onlinelibrary.wiley.com/doi/abs/10.1002/0470013192.bsa606)
  
- * [C. A. Hosman et al., _The Sensitivity of Linear Regression Coefficients' Confidence Limits to the Omission of a Cofounder_, The Annals of Applied Statistics (Vol.4), 2010](https://arxiv.org/pdf/0905.3463.pdf)
+ [^4] [C. A. Hosman et al., _The Sensitivity of Linear Regression Coefficients' Confidence Limits to the Omission of a Cofounder_, The Annals of Applied Statistics (Vol.4), 2010](https://arxiv.org/pdf/0905.3463.pdf)
  
- * [Paul R. Rosenbaum, _Package ‘sensitivitymv’_, 2018](https://cran.r-project.org/web/packages/sensitivitymv/sensitivitymv.pdf)
+ [^5] [Paul R. Rosenbaum, _Package ‘sensitivitymv’_, 2018](https://cran.r-project.org/web/packages/sensitivitymv/sensitivitymv.pdf)
  
 
