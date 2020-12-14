@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Unmeasured Confounding - Sensitivity Analysis of Treatment Effect
+title: Unmeasured Confounding and Bias - Sensitivity Analysis of Treatment Effect
 subtitle: Housing, Health and Happiness
 
 ---
