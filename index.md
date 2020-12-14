@@ -24,7 +24,6 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 -> si on veut ajouter des graphes on peut mettre un schéma graphe comme dans le cours pour illustrer l'effet du confounder sur treatment and outcome.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 ### II. A Solution: Matching
 
@@ -37,27 +36,25 @@ This is not an exact matching as the paired samples can be slightly diffferent b
 
 ## B) Replicating the paper's matching method
 
-In the paper they use an $L_{infty}$ norm : the pairs are created based on 4 pre-treatment variables : 
-* C_blocksdirtfloor : Proportion of blocks of houses with houses that has dirt floors
-* C_HHdirtfloor : Proportion of households with dirt floors
-* C_child05 : Average number of children between $0$ and $5$ years
-* C_households : Number of households
-They are matching on the observed covaraites. The idea is to minimise the $L_{infty}$ distance to match the pairs of control and treatment data points. The $L_{infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
+In the paper they use an $L_{\infty}$ norm : the pairs are created based on $4$ pre-treatment variables : 
+* _C_blocksdirtfloor_ : Proportion of blocks of houses with houses that has dirt floors
+* _C_HHdirtfloor_ : Proportion of households with dirt floors
+* _C_child05_ : Average number of children between $0$ and $5$ years
+* _C_households_ : Number of households
+They are matching on the observed covariates. The idea is to minimise the $L_{\infty}$ distance to match the pairs of control and treatment data points. The $L_{\infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{\infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
 
-In practice :
-- construct bipartite graph : node = sample, treated samples on one hand and control samples on the other hand. 
-Edge = links one control and one treated sample, weighted with the $L_{infty}$ norm.
-- Aim : minimise the norm over the matching. So the algorithms finds the best matched pairs such that the norm is minimum.
+In practice, we construct a bipartite graph. Each node represents a sample, treated samples are on one side of the graph and control samples are on the other side. 
+The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best matched pairs such that the norm is minimum.
 
 
 ## C) Propensity score matching
 
-We want that the two samples of the pair have the same probability to be treated $\pi_l = \mathbb{P}(Z_l = 1 | r_{Cl}, r_{Tl}, \bold{x}_l, u_l)$ as defined below.
-Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $x$ but total treatment and control groups will have the same distribution. 
+Another of matching samples uses what is called propensity scores. We want that the two samples of the pair have the same probability to be treated $ \pi_{l} = \mathbb{P}(Z_{l} = 1 | r_{Cl}, r_{Tl}, \bold{x}_{l}, u_{l})$, with $Z_l$ the treatment, $r_{Cl}$ ..., $r_{Tl}$ ... , $\bold{x}_{l}$ ..., $u_{l}$ ....
+Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $\bold{x}$ but total treatment and control groups will have the same distribution. 
 
-In practice :
-- construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
-- we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity.
+In practice, we construct bipartite graph as explained above for the matching of the paper. The edges are now weighted with the difference of similarity score. The similarity is defined as $1 - $ the difference of propensity score. We want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. The algotihm find the matching that miximises the overall similarity.
+
+The figure below illustrates the distribution of the propensity scores before and after the matching. We can see that after the matching, the distributions overlap almost perfectly. 
 
 <iframe frameborder="no" border="0" marginwidth="-10%" marginheight="0" width="150%" height="300" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
 
@@ -66,8 +63,6 @@ In practice :
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Pmatched4SMD.html"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PmatchedAllSMD.html"></iframe>
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 ### III. Sensitivity Analysis
 
