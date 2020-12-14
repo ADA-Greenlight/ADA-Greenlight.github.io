@@ -146,5 +146,22 @@
       {% include {{ file }} %}
     {% endfor %}
   {% endif %}
+  
+  <link rel="stylesheet" href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css">
+  <script defer src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>
+  <script defer>
+    //KaTeX settings
+    var katex_config = {
+      delimiters:
+        [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+    };
+  </script>
+  <script defer src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,katex_config)"></script>
 
 </head>
