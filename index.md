@@ -59,9 +59,9 @@ In practice :
 - construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
 - we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity.
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="800" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="300" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="90%" height="800" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="300" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Pmatched4SMD.html"></iframe>
 
