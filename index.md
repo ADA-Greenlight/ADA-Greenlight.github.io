@@ -59,9 +59,9 @@ In practice :
 - construct bipartite graph : same as explained above for the matching of the paper. Edges weighted with the difference of similarity score. Similarity = 1 - difference of propensity score. 
 - we want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. Find the matching that miximises the overall similarity.
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="10%" height="100" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="10%" height="100" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Pmatched4SMD.html"></iframe>
 
@@ -109,9 +109,9 @@ Check balance prior to matching with SMD for the census variables used for the m
 
 ## Regression Analysis : -> à changer de place
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
 
 
 ### IV. Conclusion
