@@ -73,10 +73,6 @@ The figure below illustrates the distribution of the propensity scores before an
    <img src="assets/img/prop_dist_before.png" width="800">
 </figure>
 
-<iframe align="middle" frameborder="no" border="0" marginwidth="0" marginheight="0" width="1200" height="350" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="1200" height="350" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
-
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Pmatched4SMD.html"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PmatchedAllSMD.html"></iframe>
@@ -156,4 +152,6 @@ It seems that propensity score doesn't improve the results.
  
  * [Paul R. Rosenbaum, _Package ‘sensitivitymv’_, 2018](https://cran.r-project.org/web/packages/sensitivitymv/sensitivitymv.pdf)
  
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="1200" height="350" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
 
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="1200" height="350" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
