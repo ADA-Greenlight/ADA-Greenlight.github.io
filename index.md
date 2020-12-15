@@ -123,9 +123,11 @@ $\Delta$ is called the shift. It measures the relationship between the unobserve
 
 ## Sensitivity analysis of the different matchings
 
-The figure below shows the results in terms of value of $\Gamma$ for the different matchings : the matching of the paper using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity matching with all the variables performs overall a little bit worse than the two other matchings.
+The figure below shows the results in terms of value of $\Gamma$ for the different matchings : the matching of the paper using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity matching with all the variables performs overall a little bit worse than the two other matchings. The results are uneven among the different outcomes. We can observe that the outcomes describing the presence of cement floor in the different rooms of the house are the less sensible to bias, followed by the satisfaction outcomes. For _S_pss_ and _S_cesds_, a $p$-value of $0.05$ is reached for $\Gamma = 1$, which means not only these outcomes are extremely sensible to bias, but we cannot reject the null hypothesis of no treatment effect. This result is obtained for the three different matchings.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Gamma_fig.html"></iframe>
+
+The next step is the amplification of the sensitivity analysis. The process is done for the 
 
 ---------------------------
 
