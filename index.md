@@ -15,6 +15,8 @@ In this extension, we propose to conduct a robustness check to verify the matchi
  
 In the paper 'Housing, Health and Happiness', the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to 50m² of cement floor. It was established by the Mexican government in $2000$ in the State of Coahuila first, then in $2004$ in the state of Durango. The study observes the evolution of two populations in two twin cities: Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps: verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
 
+---------------------------
+
 ### I. The Problems with Observational Studies
 
 ## Randomised ? 
@@ -45,6 +47,8 @@ We can calculate the standardized mean differences for every feature, and if our
 The graph below shows the $\mathrm{SMD}$ value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced for all variables. 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/InitialSMD.html"></iframe>
+
+---------------------------
 
 ### II. A Solution: Matching
 
@@ -86,6 +90,8 @@ The figure below illustrates the distribution of the propensity scores before an
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PmatchedAllSMD.html"></iframe>
 
+---------------------------
+
 ### III. Sensitivity Analysis
 
 ## Theory and background
@@ -121,7 +127,7 @@ The figure below shows the results in terms of value of $\Gamma$ for the differe
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Gamma_fig.html"></iframe>
 
-
+---------------------------
 
 ## Analysis of available data -> à changer de place ?
 
@@ -133,6 +139,7 @@ Check balance prior to matching with SMD for the census variables used for the m
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
 
+---------------------------
 
 ### IV. Conclusion
 
@@ -147,6 +154,7 @@ This paper wasn't containing any statistical test.
 * Would propensity score matching (or another matching method) improve the accuracy of the results ?
 It seems that propensity score doesn't improve the results.
 
+---------------------------
 
 
 ### Resources 
