@@ -69,9 +69,9 @@ In practice, we construct bipartite graph as explained above for the matching of
 
 The figure below illustrates the distribution of the propensity scores before and after the matching. We can see that after the matching, the distributions overlap almost perfectly. 
 
-<figure>
-   <img src="assets/img/prop_dist_before.png">
-</figure>
+<figure> <img src="assets/img/prop_dist_before.png"> </figure>
+
+<figure> <img src="assets/img/prop_dist_after.png"> </figure>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Pmatched4SMD.html"></iframe>
 
