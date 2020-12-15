@@ -21,30 +21,29 @@ In the paper 'Housing, Health and Happiness', the aim is to measure the impact o
 
 ## Randomised ? 
 
-In an **ideal randomised trial**, the treatment assignment would be randomly decided (equivalent to a $50/50$ coin flip). Therefore, if we assume the trial is actually randomised, the distribution of our covariates will be the same in both groups, i.e. the covariates are said to be balanced. In this case, the control and treatment groups are indistinguishable. Thus, if the outcome between different treatment groups end up differing, it will not be because of differences in the covariates defining the groups, it will be because of the treatment.
+In an **ideal randomised trial**, the treatment assignment would be randomly decided, i.e. equivalent to a $50/50$ coin flip. Therefore, if we assume the trial is actually randomised, the distribution of our covariates will be the same in both groups, i.e. the covariates are said to be balanced. In this case, the control and treatment groups are indistinguishable. Thus, if the outcome between different treatment groups end up differing, it will not be because of differences in the covariates defining the groups, it will be because of the treatment.
 
 However, as it is not always possible to perform a randomised trial (either unethical, impractical, too expensive, ...), **observational studies** are conducted, where there is no intervention in the treatment assignment and retrospective data is observed. This is the case of the 'Housing, Health and Happiness' paper. Indeed, data is collected from census and surveys a posteriori and the researchers cannot control the conditions under which samples are distributed. This might lead to a potential problem as the decision of which subjects receive the treatment is not entirely random and thus a potential source of bias.
 
-To be more precise, subjects are selected to be treated and the treatment assignment and the outcome may be caused by the same hidden covariate. For observational studies, the distribution of variables will typically differ between treatment and control group, as it is not a randomised trial. The goal of the study is to determine the effects of the variables defining households before the begining of the program on the outcome, but sometimes the measured covariates may not be directly causing the differences in the outcome. There might be more covariates which were not measured but are actually important in the chain of cause and effect. These variables that affect both treatment assignment and outcome are called **confounders**, as seen on Figure 1. In observational studies, an important assumption in the estimation of causal effect is the **ignorability assumption** : given pre-treatment covariates, treatment assignment is independent of the potential outcome, also known as the "no unmeasured confounders' assumption".  
+To be more precise, subjects are selected to be treated and the treatment assignment and the outcome may be caused by the same hidden covariate. For observational studies, the distribution of variables will typically differ between treatment and control group, as it is not a randomised trial. The goal of the study is to determine the effects of the variables defining households before the begining of the program on the outcome, but sometimes the measured covariates may not be directly causing the differences in the outcome. There might be more covariates which were not measured but are actually important in the chain of cause and effect. These variables that affect both treatment assignment and outcome are called **confounders**, as seen on the diagram below. In observational studies, an important assumption in the estimation of causal effect is the **ignorability assumption** : given pre-treatment covariates, treatment assignment is independent of the potential outcome, also known as the "no unmeasured confounders' assumption".  
 
 <figure> <img src="assets/img/Confounding_img.png"> 
 <center><figcaption>Effect of confounders on treatment and outcome.</figcaption></center> </figure>
 
 ## Balanced ? 
 
-We can start by analysing the distribution and properties of the variables from the $2000$ Census, which are the pre-treatment variables. In the dataset, they correspond to the variables beginning in 'C_'. Following their results given in Table 2, we can compute the mean values of treatment and control, as well as the mean difference by aggregating at census block level. In the paper, this is what they use as evidence to show that the data is balanced with their matching, so it is interesting to check these results by replicating this table. 
--> no statistical test so we apply a statistical test to check wether the variables or balanced or not
+We can start by analysing the distribution and properties of the variables from the $2000$ Census, which are the pre-treatment variables. In the dataset, they correspond to the variables beginning in 'C_'. Following the results given in Table 2 of the paper, we can compute the mean values of treatment and control, as well as the mean difference by aggregating at census block level. In the paper, this is what they use as evidence to show that the data is balanced with their matching. They don't apply any statistical test to demonstrate their results so we decide to apply a statistical test to check wether the variables are balanced or not. To assess whether balance is achieved between treatment and control, a useful tool is **standardized mean differences (SMD)**, which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
 
-To assess whether balance is achieved between treatment and control, we can look at standardized mean differences (SMD), which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
+$\mathrm{SMD} = \frac{ \bar{\bold{X}_{t}} - \bar{\bold{X}_{c}} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ 
 
-$\mathrm{SMD} = \frac{ \bar{\mathcal X_t} - \bar{\mathcal X_c} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ where $\bar{\mathcal X_t}$, $\bar{\mathcal X_c}$  denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
+where $\bar{\bold{X}_{t}}$, $\bar{\bold{X}_{c}}$ denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
 
-We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a t-test) :
-* $\mathrm{SMD} < 0.1$ : For a randomized trial, the smd between all of the covariates should typically fall into this bucket.
+We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a $t$-test) :
+* $\mathrm{SMD} < 0.1$ : For a randomized trial, the $\mathrm{SMD}$ between all of the covariates should typically fall into this bucket.
 * $0.1 < \mathrm{SMD} < 0.2$ : Not necessarily balanced, but small enough that people are usually not too worried about them. Sometimes, even after performing matching, there might still be a few covariates whose smd fall under this range.
 * $\mathrm{SMD} > 0.2$ : Values that are greater than this threshold are considered seriously imbalanced.
 
-The graph below shows the $\mathrm{SMD}$ value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced for all variables. 
+The graph below shows the $\mathrm{SMD}$ value for different variables. We can see that about $36 \%$ of the variables are such that $\mathrm{SMD} < 0.1$ and $63 \%$ of the variables are such that $\mathrm{SMD} < 0.2$. It is clear that the distributions of the pre-treatment variables between treatment and control sets are not balanced for most of the variables.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/InitialSMD.html"></iframe>
 
@@ -59,28 +58,37 @@ This is not an exact matching as the paired samples can be slightly diffferent b
 
 ## Replicating the paper's matching method
 
-In the paper they use an $L_{\infty}$ norm : the pairs are created based on $4$ pre-treatment variables : 
-* _C_blocksdirtfloor_ : Proportion of blocks of houses with houses that has dirt floors
+In the paper they use the $L_{\infty}$ norm. The pairs are created based on $4$ pre-treatment variables : 
+* _C_blocksdirtfloor_ : Proportion of blocks with houses that has dirt floors
 * _C_HHdirtfloor_ : Proportion of households with dirt floors
 * _C_child05_ : Average number of children between $0$ and $5$ years
 * _C_households_ : Number of households
+
 They are matching on the observed covariates. The idea is to minimise the $L_{\infty}$ distance to match the pairs of control and treatment data points. The $L_{\infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{\infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
 
 In practice, we construct a bipartite graph. Each node represents a sample, treated samples are on one side of the graph and control samples are on the other side. 
-The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best matched pairs such that the norm is minimum.
+The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best set of matched pairs such that the norm is minimum.
+
+The graph below represents the distribution of the $4$ variables used, after the matching step. We can compare the distribution of the treated and control subsets. Histograms partially overlap so the distributions are quite similar. 
 
 <figure> <img src="assets/img/matching_paper_dist_after.png"> </figure>
+
+The next figure is the graphical result of a $\mathrm{SMD}$ applied on the census variables after the matching step. Comparing this graph to the $\mathrm{SMD}$ graph before the matching, we can see now that $45 \%$ of the variables have $\mathrm{SMD} < 0.1$ and $64 \%$ of the variables have $\mathrm{SMD} < 0.2$. These percentages have slightly increased but we can observe that the variables with a very high $\mathrm{SMD}$ before the matching still have a high $\mathrm{SMD}$ after the matching. Therefore, by looking at the $\mathrm{SMD}$ test, it seems that the matching is not efficient. 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PaperSMD.html"></iframe>
 
 
 ## Propensity score matching
 
-Another of matching samples uses what is called propensity scores. We want that the two samples of the pair have the same probability to be treated. For subject $l$, the probability of being given full knowledge of the world is $\pi_{l} = \mathbb{P}(Z_{l} = 1 \mid r_{Cl}, r_{Tl}, \bold{x_{l}}, u_{l})$, with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is control, $r_{Tl}$ the response if the subject is treated, $\bold{x_{l}}$ the observed covariates and $u_{l}$ the unobserved covariates. Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $\bold{x}$ but total treatment and control groups will have the same distribution. 
+Another of matching uses what is called **propensity score**. We want that the two samples of the pair have the same probability to be treated. For subject $l$, the probability of being given full knowledge of the world is : 
 
-In practice, we construct bipartite graph as explained above for the matching of the paper. The edges are now weighted with the difference of similarity score. The similarity is defined as $1 - $ the difference of propensity score. We want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. The algotihm find the matching that miximises the overall similarity.
+$\pi_{l} = \mathbb{P}(Z_{l} = 1 \mid r_{Cl}, r_{Tl}, \bold{x_{l}}, u_{l})$
 
-The figure below illustrates the distribution of the propensity scores before and after the matching. We can see that after the matching, the distributions overlap almost perfectly. 
+with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is control, $r_{Tl}$ the response if the subject is treated, $\bold{x_{l}}$ the observed covariates and $u_{l}$ the unobserved covariates. Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $\bold{x}$ but total treatment and control groups will have the same distribution. 
+
+In practice, we construct bipartite graph as explained above for the matching of the paper. The edges are now weighted with the difference of similarity score. The similarity is defined as 1 minus the difference of propensity score. We want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. The algotihm finds the matching that miximises the overall similarity.
+
+The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the census variables. The distributions don't really change before and after the matching. So we could really wonder if the matching is actually working. The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
 
 <figure> <img src="assets/img/prop_dist_before.png"> </figure>
 
