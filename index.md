@@ -129,6 +129,9 @@ The figure below shows the results in terms of value of $\Gamma$ for the differe
 
 The next step is the amplification of the sensitivity analysis. The process is done for the 
 
+<figure> <img src="assets/img/amplification.png"> 
+<center><figcaption>Amplification of $\Gamma = 3.25$.</figcaption></center> </figure>
+
 ---------------------------
 
 ## Analysis of available data -> à changer de place ?
