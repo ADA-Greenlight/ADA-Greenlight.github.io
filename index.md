@@ -28,7 +28,7 @@ However, as it is not always possible to perform a randomised trial (either unet
 To be more precise, subjects are selected to be treated and the treatment assignment and the outcome may be caused by the same hidden covariate. For observational studies, the distribution of variables will typically differ between treatment and control group, as it is not a randomised trial. The goal of the study is to determine the effects of the variables defining households before the begining of the program on the outcome, but sometimes the measured covariates may not be directly causing the differences in the outcome. There might be more covariates which were not measured but are actually important in the chain of cause and effect. These variables that affect both treatment assignment and outcome are called **confounders**, as seen on Figure 1. In observational studies, an important assumption in the estimation of causal effect is the **ignorability assumption** : given pre-treatment covariates, treatment assignment is independent of the potential outcome, also known as the "no unmeasured confounders' assumption".  
 
 <figure> <img src="assets/img/Confounding_img.png"> 
-<center><figcaption><em>Figure 1</em> - Effect of confounders on treatment and outcome.</figcaption></center> </figure>
+<center><figcaption>Effect of confounders on treatment and outcome.</figcaption></center> </figure>
 
 ## Balanced ? 
 
@@ -116,10 +116,10 @@ The question is now to discuss the possibility of existence of an unobserved cov
 
 In order to do so, we will need to go further and decompose $\Gamma$ into two parameters : $(\Lambda, \Delta)$. These parameters are defined by : $\Gamma = \frac{\Lambda \Delta + 1}{\Lambda + \Delta}$. For each value of $\Gamma$, we can draw a graph of $\Delta$ as a function of $\Lambda$.
 
-$\Delta$ is called the shift. It measures the relationship between the unobserved covariate and the difference in outcomes within the matched pair. $\Lambda$ is called the strength and evaluates the relationship between the confounder and the difference in probability of being assigned a treatment. Thus $\Delta$ represents impact on the outcome whereas $\Lambda$ represents the impact on the treatment. With these new parameters, we can now update the scheme in section I.  
+$\Delta$ is called the shift. It measures the relationship between the unobserved covariate and the difference in outcomes within the matched pair. $\Lambda$ is called the strength and evaluates the relationship between the confounder and the difference in probability of being assigned a treatment. Thus $\Delta$ represents impact on the outcome whereas $\Lambda$ represents the impact on the treatment. With these new parameters, we can now update the scheme of section I.  
 
 <figure> <img src="assets/img/confounding_updated.png"> 
-<center><figcaption>Effect of confounders on treatment and outcome, interms of $\Lambda$ and $\Delta$.</figcaption></center> </figure>
+<center><figcaption>Effect of confounders on treatment and outcome, in terms of $\Lambda$ and $\Delta$.</figcaption></center> </figure>
 
 ## Sensitivity analysis of the different matchings
 
