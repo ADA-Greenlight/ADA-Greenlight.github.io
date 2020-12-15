@@ -6,17 +6,6 @@ layout: null
 
 /* --- General --- */
 
-figure {
-width: 400px;
-height: 250px;
-line-height: 250px;
-text-align: center;
-}
-
-img {
-vertical-align: middle;
-}
-
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 18px;
