@@ -65,6 +65,10 @@ They are matching on the observed covariates. The idea is to minimise the $L_{\i
 In practice, we construct a bipartite graph. Each node represents a sample, treated samples are on one side of the graph and control samples are on the other side. 
 The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best matched pairs such that the norm is minimum.
 
+<figure> <img src="assets/img/matching_paper_dist_after.png"> </figure>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PaperSMD.html"></iframe>
+
 
 ## Propensity score matching
 
