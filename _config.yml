@@ -16,7 +16,7 @@ author: Louise Aubet, Lucas Gutknecht, Hugo Quest
 navbar-links:
   Resources:
      - Original Paper: "https://www.aeaweb.org/articles?id=10.1257/pol.1.1.75"
-     - Design of Observation Studies, P. Rosenbaum: "https://www.springer.com/gp/book/9783030464042"
+     - Project Repository: "https://github.com/epfl-ada/ada-2020-project-milestone-p3-p3_greenlight"
   #Benchmark Analysis: "benchmark"
   #Matching:
   #  - Matching with paper variables: "matching_paper"
