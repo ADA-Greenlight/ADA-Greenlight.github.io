@@ -48,12 +48,12 @@ The graph below shows the $\mathrm{SMD}$ value for different variables and can c
 
 ### II. A Solution: Matching
 
-## A) Theory and background
+## Theory and background
 
 To solve the issue of the difference in variables distribution between control and treatment group, **matching** is performed. The idea is to match individuals in the treated group with similar individuals in the control group for the covariates. In the ideal case, we would like to find for each sample in the treatment group, an identical sample in the control group in terms of pre-treatment covariates. This is generally impossible but fortunately, finding similar sample in the control group is enough. The condition is that the two samples in the matched pair have probability of receiving the treatment is as close as possible. 
 This is not an exact matching as the paired samples can be slightly diffferent but the overall distribution of each pre-treatment variable is balanced between the groups, this is known as stochastic balance. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial. It enables a comparison of outcomes among treated and control samples to estimate the effect of the treatment and reducing the bias due to a potential confounder. Matching can be done in different ways.
 
-## B) Replicating the paper's matching method
+## Replicating the paper's matching method
 
 In the paper they use an $L_{\infty}$ norm : the pairs are created based on $4$ pre-treatment variables : 
 * _C_blocksdirtfloor_ : Proportion of blocks of houses with houses that has dirt floors
@@ -66,7 +66,7 @@ In practice, we construct a bipartite graph. Each node represents a sample, trea
 The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best matched pairs such that the norm is minimum.
 
 
-## C) Propensity score matching
+## Propensity score matching
 
 Another of matching samples uses what is called propensity scores. We want that the two samples of the pair have the same probability to be treated. For subject $l$, the probability of being given full knowledge of the world is $\pi_{l} = \mathbb{P}(Z_{l} = 1 \mid r_{Cl}, r_{Tl}, \bold{x_{l}}, u_{l})$, with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is control, $r_{Tl}$ the response if the subject is treated, $\bold{x_{l}}$ the observed covariates and $u_{l}$ the unobserved covariates. Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one signle number called the propensity score. This number is computed for every samples using a logistic regression. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $\bold{x}$ but total treatment and control groups will have the same distribution. 
 
@@ -84,7 +84,7 @@ The figure below illustrates the distribution of the propensity scores before an
 
 ### III. Sensitivity Analysis
 
-## A) Theory and background
+## Theory and background
 
 Matching can improve the veracity of the results. It ensures that similar samples are compared, i.e. they are similar in terms of observed variables. Nevertheless, there might be some unobserved covariates that highly differ between the two samples. In other words, a **naive model** assumes that the probability to be trated was $0.5$ inside the pairs treated-control. However, there might exists a unmeasured confouder that could unbalance this probability by favouring one sample or the other. **Sensibility analysis** allows to quantify the degree to which the naive model is wrong.  
 
@@ -111,7 +111,7 @@ pair. $\Lambda$ is called the strength and evaluates the strength of the relatio
 
 unobserved covariate may be strongly related to treatment assignment, but its relationship with the outcome is thought to be weak, so Λ could be large with Δ much smaller
 
-## B) Sensitivity analysis of the different matchings
+## Sensitivity analysis of the different matchings
 
 The figure below shows the results in terms of value of $\Gamma$ for the different matchings : the matching of the paper using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity matching with all the variables performs overall a little bit worse than the two other matchings.
 
