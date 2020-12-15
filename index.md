@@ -151,7 +151,4 @@ It seems that propensity score doesn't improve the results.
  * [C. A. Hosman et al., _The Sensitivity of Linear Regression Coefficients' Confidence Limits to the Omission of a Cofounder_, The Annals of Applied Statistics (Vol.4), 2010](https://arxiv.org/pdf/0905.3463.pdf)
  
  * [Paul R. Rosenbaum, _Package ‘sensitivitymv’_, 2018](https://cran.r-project.org/web/packages/sensitivitymv/sensitivitymv.pdf)
- 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="1200" height="350" allowfullscreen="true" src="assets/img/prop_dist_before.png"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="1200" height="350" allowfullscreen="true" src="assets/img/prop_dist_after.png"></iframe>
