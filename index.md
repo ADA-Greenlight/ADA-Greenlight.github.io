@@ -127,18 +127,14 @@ The figure below shows the results in terms of value of $\Gamma$ for the differe
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Gamma_fig.html"></iframe>
 
-The next step is the amplification of the sensitivity analysis. The process is done for the 
+Let's concentrate on the outcome _S_shcementfloor_. We measure a sensitivity of $\Gamma = 3.25$ using the matching of the paper. It corresponds to a probability of treatment comprised in $[\frac{1}{1 + \Gamma}, \frac{\Gamma}{1 + \Gamma}] = [0.23, 0.76]$.This violates the hypothesis of randomised treatment assignment. Furthermore, to put into question the conclusion of a treatment effect, we would need to find an unmeasured covariate that would influence the treatment probability such that the odds of being treated would be $3$ times higher for two people with same measured covariates. The next step is the amplification of the sensitivity analysis. The result is shown in the graph below. All combinaisons $(\Lambda, \Delta)$ such that $\Gamma = 3.25$ forms the blue curve. All combinaisons above the curve lead to $p < 0.05$ which means the there are significant effects. On the opposite, all combinaisons below the curve lead to $p > 0.05$ which means the there are no significant effect of the treatment. Let's take an example. $(\Lambda, \Delta) = (6, 7)$ corresponds to an unobserved covariate that multiplies by $6$ the odds of treatment and multiplies the odds of a positive pair difference in the outcomes by $7$.
 
 <figure> <img src="assets/img/amplification.png"> 
 <center><figcaption>Amplification of $\Gamma = 3.25$.</figcaption></center> </figure>
 
 ---------------------------
 
-## Analysis of available data -> à changer de place ?
-
-Check balance prior to matching with SMD for the census variables used for the matching (matching with pre-treatment variables, not with outcomes!)
-
-## Regression Analysis
+## Regression Analysis -> où ?
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="103%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
 
