@@ -31,7 +31,7 @@ We can start by analysing the distribution and properties of the variables from 
 
 To assess whether balance is achieved between treatment and control, we can look at standardized mean differences (SMD), which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
 
-$\mathrm{SMD} = \frac{ X_{c} - X_{t} }{ \sqrt{(s_{c}^{2} + s_{t}^{2})/2} }$ where $X_{t}$, $X_{c}$  denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
+$\mathrm{SMD} = \frac{ X_{c} - X_{t} }{ \sqrt{(s_{c}^{2} + s_{t}^{2})/2} }$ where $\bar{\mathcal X_t}$, $\bar{\mathcal X_c}$  denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
 
 We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a t-test) :
 * $< 0.1$ : For a randomized trial, the smd between all of the covariates should typically fall into this bucket.
