@@ -110,7 +110,7 @@ If the $p$-value $< 0.05$, we can reject the null hypothesis $H_0$ of no treatme
 
 In practice, we use in this work the `sensitivitymv` R library and more specifically `senmv` function. This would allow us to evaluate the robustness of the model towards the bias between the paper assignment and a randomised one.
 
-## Amplification of Sensitivity Analysis :
+## Amplification of Sensitivity Analysis
 
 The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
 
