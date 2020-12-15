@@ -104,6 +104,8 @@ In order to do so, we will need to go further and decompose $\Gamma$ into two pa
 $\Delta$ is called the shift. It represents the strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
 pair. $\Lambda$ is called the strength and evaluates the strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment. Thus $\Delta$ represents more the ... whereas $\Lambda$ represents more ... . -> à éclaircir !!
 
+unobserved covariate may be strongly related to treatment assignment, but its relationship with the outcome is thought to be weak, so Λ could be large with Δ much smaller
+
 ## B) Sensitivity analysis of the different matchings
 
 The figure below shows the results in terms of value of $\Gamma$ for the different matchings : the matching of the paper using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity matching with all the variables performs overall a little bit worse than the two other matchings.
