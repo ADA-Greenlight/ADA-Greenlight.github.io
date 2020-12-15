@@ -154,6 +154,7 @@ Let's concentrate on the outcome _S_shcementfloor_. We measure a sensitivity of 
 
 Answer the research questions :
 * Most important variables in the data set in terms of predicting power for the studied models : ...
+Regression analysis : If there is a water connection inside the house. 
     
 * Potential bias to alter the conclusions of the study :
 The method of the paper is ... to small/high bias.
@@ -162,6 +163,9 @@ This paper wasn't containing any statistical test.
 
 * Would propensity score matching (or another matching method) improve the accuracy of the results ?
 It seems that propensity score doesn't improve the results.
+Using too many variables is not a good thing for matching. 
+
+Direction for future studies : apply the same analysis to the outcomes describing the health of the children : _S_diarrhea_, _S_anemia_, _S_S_mccdts_ and _S_pbdypct_. We didn't do this analysis due to a lack of time.
 
 ---------------------------
 
