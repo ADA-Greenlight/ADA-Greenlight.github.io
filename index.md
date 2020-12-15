@@ -34,11 +34,11 @@ To assess whether balance is achieved between treatment and control, we can look
 $\mathrm{SMD} = \frac{ \bar{\mathcal X_t} - \bar{\mathcal X_c} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ where $\bar{\mathcal X_t}$, $\bar{\mathcal X_c}$  denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
 
 We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a t-test) :
-* $< 0.1$ : For a randomized trial, the smd between all of the covariates should typically fall into this bucket.
-* $0.1 - 0.2$ : Not necessarily balanced, but small enough that people are usually not too worried about them. Sometimes, even after performing matching, there might still be a few covariates whose smd fall under this range.
-* $> 0.2$ : Values that are greater than this threshold are considered seriously imbalanced.
+* $\mathrm{SMD} < 0.1$ : For a randomized trial, the smd between all of the covariates should typically fall into this bucket.
+* $0.1 < \mathrm{SMD} < 0.2$ : Not necessarily balanced, but small enough that people are usually not too worried about them. Sometimes, even after performing matching, there might still be a few covariates whose smd fall under this range.
+* $\mathrm{SMD} > 0.2$ : Values that are greater than this threshold are considered seriously imbalanced.
 
-The above graph shows the SMD value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced. 
+The above graph shows the $\mathrm{SMD}$ value for different variables and can clearly see that the distributions of the pre-treatment variables between treatment and control sets are not balanced. 
 
 ### II. A Solution: Matching
 
