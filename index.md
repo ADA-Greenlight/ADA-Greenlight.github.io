@@ -116,10 +116,10 @@ The question is now to discuss the possibility of existence of an unobserved cov
 
 In order to do so, we will need to go further and decompose $\Gamma$ into two parameters : $(\Lambda, \Delta)$. These parameters are defined by : $\Gamma = \frac{\Lambda \Delta + 1}{\Lambda + \Delta}$. For each value of $\Gamma$, we can draw a graph of $\Delta$ as a function of $\Lambda$.
 
-$\Delta$ is called the shift. It represents the strength of the relationship between the unobserved covariate and the difference in outcomes within the matched
-pair. $\Lambda$ is called the strength and evaluates the strength of the relationship between the unobserved covariate and the difference in probability of being assigned a treatment. Thus $\Delta$ represents more the ... whereas $\Lambda$ represents more ... . -> à éclaircir !!
+$\Delta$ is called the shift. It measures the relationship between the unobserved covariate and the difference in outcomes within the matched pair. $\Lambda$ is called the strength and evaluates the relationship between the confounder and the difference in probability of being assigned a treatment. Thus $\Delta$ represents impact on the outcome whereas $\Lambda$ represents the impact on the treatment. With these new parameters, we can now update the scheme in section I.  
 
-unobserved covariate may be strongly related to treatment assignment, but its relationship with the outcome is thought to be weak, so Λ could be large with Δ much smaller
+<figure> <img src="assets/img/confounding_updated.png"> 
+<center><figcaption>Effect of confounders on treatment and outcome, interms of $\Lambda$ and $\Delta$.</figcaption></center> </figure>
 
 ## Sensitivity analysis of the different matchings
 
