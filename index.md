@@ -180,6 +180,9 @@ This paper wasn't containing any statistical test.
 It seems that propensity score doesn't improve the results.
 Using too many variables is not a good thing for matching. 
 
+Matching and SMD : SMD not really improved.
+Criticise : control sets is already matched. As in the paper they say that control samples are chosen by minimising L_infinite norm. It would have been better to have the initial control set that is bigger and not already matched. Matching might have been more efficient in that case.
+
 Direction for future studies : apply the same analysis to the outcomes describing the health of the children : _S_diarrhea_, _S_anemia_, _S_S_mccdts_ and _S_pbdypct_. We didn't do this analysis due to a lack of time.
 
 ---------------------------
