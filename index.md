@@ -101,9 +101,9 @@ We can improve the matching if we match only observations with similar propensit
 
 The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_prop4.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_prop4.html"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_propall.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_propall.html"></iframe>
 
 ---------------------------
 
