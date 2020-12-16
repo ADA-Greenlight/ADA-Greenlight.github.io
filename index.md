@@ -96,16 +96,14 @@ with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is con
 In practice, we construct a bipartite graph as explained above for the matching with $L_{\infty} norm. The edges are now weighted with the difference of similarity score. The similarity is defined as 1 minus the difference of propensity score, and we want to minimise the difference of propensity scores between the pairs. Equivalently, we can maximise the similarity between the pairs. The algorithm therefore finds the matching that maximises the overall similarity.
 
 The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the pre-treatment census variables. There is little overlap in the distribution of propensity scores matching on all cencus variables for the treatment and control groups. The intuition is that if these additional variables are highly correlated with which sample is treated and which one is not, it means that they can potentially cause a lot of confounding and we would therefore not want to exclude them since this study aims precisely at assessing their impact. Nevertheless, the distributions don't really change before and after the matching. 
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_4.html"></iframe>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_all.html"></iframe>
-
 We can improve the matching if we match only observations with similar propensities by adding a threshhold on the accepted value difference. For example, by adding a similarity threshold of 0.99, the obtained distributions have greater overlap, as expected.
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_4_threshold.html"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_all_threshold.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_beforematching.html"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_aftermatching.html"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_aftermatching_threshold.html"></iframe>
 
 The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
 
