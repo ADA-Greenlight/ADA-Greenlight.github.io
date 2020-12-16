@@ -34,9 +34,9 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 We can start by analysing the distribution and properties of the variables from the $2000$ Census, which are the pre-treatment variables. In the dataset, they correspond to the variables beginning in 'C_'. Following the results given in Table 2 of the paper, we can compute the mean values of treatment and control, as well as the mean difference by aggregating at census block level. In the paper, this is what they use as evidence to show that the data is balanced with their matching. They don't apply any statistical test to demonstrate their results so we decide to apply a statistical test to check wether the variables are balanced or not. To assess whether balance is achieved between treatment and control, a useful tool is **standardized mean differences (SMD)**, which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
 
-$\mathrm{SMD} = \frac{ \bar{\bold{X_{t}}} - \bar{\bold{X_{c}}} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ 
+$\mathrm{SMD} = \frac{ \bar{\mathrm{X_{t}}} - \bar{\mathrm{X_{c}}} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ 
 
-where $\bar{\bold{X_{t}}}$, $\bar{\bold{X_{c}}}$ denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
+where $\bar{\mathrm{X_{t}}}$, $\bar{\mathrm{X_{c}}}$ denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
 
 We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a $t$-test) :
 * $\mathrm{SMD} < 0.1$ : For a randomized trial, the $\mathrm{SMD}$ between all of the covariates should typically fall into this bucket.
@@ -76,6 +76,8 @@ The graph below represents the distribution of the $4$ variables used, after the
 The next figure is the graphical result of a $\mathrm{SMD}$ applied on the census variables after the matching step. Comparing this graph to the $\mathrm{SMD}$ graph before the matching, we can see now that $45 \%$ of the variables have $\mathrm{SMD} < 0.1$ and $64 \%$ of the variables have $\mathrm{SMD} < 0.2$. These percentages have slightly increased but we can observe that the variables with a very high $\mathrm{SMD}$ before the matching still have a high $\mathrm{SMD}$ after the matching. Therefore, by looking at the $\mathrm{SMD}$ test, it seems that the matching is not efficient. 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PaperSMD.html"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_paper_blocks.html"></iframe>
 
 
 ## Propensity score matching
