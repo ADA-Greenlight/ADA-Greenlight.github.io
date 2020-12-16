@@ -88,7 +88,13 @@ with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is con
 
 In practice, we construct bipartite graph as explained above for the matching of the paper. The edges are now weighted with the difference of similarity score. The similarity is defined as 1 minus the difference of propensity score. We want to minimise the difference of propensity score between the pairs. Equivalently we can maximise the similarity between the pairs. The algotihm finds the matching that miximises the overall similarity.
 
-The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the census variables. The distributions don't really change before and after the matching. So we could really wonder if the matching is actually working. The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
+The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the census variables. There is little overlap in the distribution of propensity scores matching on all cencus variables for the treatment and control groups. 
+
+The intuition is that if these additional variables are highly correlated with which sample is treated and which one is not, it means that they can potentially cause a lot of confounding and we would therefore not want to exclude them since this study aims precisely at assessing their impact. We can still improve the matching if we match only observations with similar propensities by adding a treshhold on the accepted value difference.
+
+AJOUTER GRAPH TRESHOLD
+
+Nevertheless, the distributions don't really change before and after the matching. So we could really wonder if the matching is actually working. The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
 
 <figure> <img src="assets/img/prop_dist_before.png"> </figure>
 
