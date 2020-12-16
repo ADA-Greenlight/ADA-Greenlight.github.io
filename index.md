@@ -76,7 +76,7 @@ The figure below represents the distributions of one of the 4 variables used for
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_paper_blocks.html"></iframe>
 
 <figure class="sidenote">
-    <img src="img/Confounding_img.png">
+    <img src="assets/img/Confounding_img.png">
     <figcaption><em>Figure 1.</em> The Varroa destructor in action.</figcaption>
 </figure>
 </div>
