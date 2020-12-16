@@ -75,7 +75,7 @@ The figure below represents the distributions of one of the 4 variables used for
 
 The next figure is the graphical result of a $\mathrm{SMD}$ applied on the census variables after the matching step. Comparing this graph to the $\mathrm{SMD}$ graph before the matching, we can see now that $45 \%$ of the variables have $\mathrm{SMD} < 0.1$ and $64 \%$ of the variables have $\mathrm{SMD} < 0.2$. These percentages have slightly increased but we can observe that the variables with a very high $\mathrm{SMD}$ before the matching still have a high $\mathrm{SMD}$ after the matching. Therefore, by looking at the $\mathrm{SMD}$ test, it seems that the matching is not efficient. This could be due to the fact that only 4 of the pre-treatment variables are used to match the data points, and we indeed observe an average of 7% decrease in the SMD values for the 4 matching variables. 
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PaperSMD.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_paper.html"></iframe>
 
 ## Propensity score matching
 
@@ -87,19 +87,23 @@ with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is con
 
 In practice, we construct a bipartite graph as explained above for the matching with $L_{\infty} norm. The edges are now weighted with the difference of similarity score. The similarity is defined as 1 minus the difference of propensity score, and we want to minimise the difference of propensity scores between the pairs. Equivalently, we can maximise the similarity between the pairs. The algorithm therefore finds the matching that maximises the overall similarity.
 
-The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the pre-treatment census variables. There is little overlap in the distribution of propensity scores matching on all cencus variables for the treatment and control groups. The intuition is that if these additional variables are highly correlated with which sample is treated and which one is not, it means that they can potentially cause a lot of confounding and we would therefore not want to exclude them since this study aims precisely at assessing their impact. We can still improve the matching if we match only observations with similar propensities by adding a threshhold on the accepted value difference. For example, by adding a similarity threshold of 0.99, the obtained distributions have greater overlap, as expected.
+The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the pre-treatment census variables. There is little overlap in the distribution of propensity scores matching on all cencus variables for the treatment and control groups. The intuition is that if these additional variables are highly correlated with which sample is treated and which one is not, it means that they can potentially cause a lot of confounding and we would therefore not want to exclude them since this study aims precisely at assessing their impact. Nevertheless, the distributions don't really change before and after the matching. So we could really wonder if the matching is actually working. 
 
-AJOUTER GRAPH TRESHOLD
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_4.html"></iframe>
 
-Nevertheless, the distributions don't really change before and after the matching. So we could really wonder if the matching is actually working. The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_all.html"></iframe>
 
-<figure> <img src="assets/img/prop_dist_before.png"> </figure>
+We can improve the matching if we match only observations with similar propensities by adding a threshhold on the accepted value difference. For example, by adding a similarity threshold of 0.99, the obtained distributions have greater overlap, as expected.
 
-<figure> <img src="assets/img/prop_dist_after.png"> </figure>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_4_threshold.html"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Pmatched4SMD.html"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_prop_compare_all_threshold.html"></iframe>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PmatchedAllSMD.html"></iframe>
+The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_prop4.html"></iframe>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_propall.html"></iframe>
 
 ---------------------------
 
