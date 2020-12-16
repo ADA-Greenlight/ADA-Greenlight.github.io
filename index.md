@@ -32,18 +32,18 @@ To be more precise, subjects are selected to be treated and the treatment assign
 
 ## Balanced ? 
 
-We can start by analysing the distribution and properties of the variables from the $2000$ Census, which are the pre-treatment variables. In the dataset, they correspond to the variables beginning in 'C_'. Following the results given in Table 2 of the paper, we can compute the mean values of treatment and control, as well as the mean difference by aggregating at census block level. In the paper, this is what they use as evidence to show that the data is balanced with their matching. They don't apply any statistical test to demonstrate their results so we decide to apply a statistical test to check wether the variables are balanced or not. To assess whether balance is achieved between treatment and control, a useful tool is **standardized mean differences (SMD)**, which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
+We can start by analysing the distribution and properties of the variables from the $2000$ Census, which are the pre-treatment variables. In the dataset, they correspond to the variables beginning in 'C_'. Following the results given in Table 2 of the paper, we can compute the mean values of treatment and control, as well as the mean difference by aggregating at census block level. In the paper, this is what they use as evidence to show that the data is balanced with their matching. The authors do not apply any statistical test to demonstrate their results, so we decide to apply a statistical test to check wether the variables are balanced or not. To assess whether balance is achieved between treatment and control, a useful tool is the **standardized mean differences (SMD)**, which is calculated by the difference in the means between the two groups divided by the pooled standard deviation : 
 
-$\mathrm{SMD} = \frac{ \bar{\mathrm{X_{t}}} - \bar{\mathrm{X_{c}}} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ 
+<center> $\mathrm{SMD} = \frac{ \bar{\mathrm{X_{t}}} - \bar{\mathrm{X_{c}}} }{ \sqrt{(s_{t}^{2} + s_{c}^{2})/2} }$ </center>
 
-where $\bar{\mathrm{X_{t}}}$, $\bar{\mathrm{X_{c}}}$ denote the mean of that feature for the treatment and control group respectively. We will use absolute value of this number. $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
+where $\bar{\mathrm{X_{t}}}$, $\bar{\mathrm{X_{c}}}$ denote the mean of that feature for the treatment and control group respectively. We will use the absolute value of this number. The variables $s_{t}$, $s_{c}$ denote the standard deviation of that feature for the treatment and control group respectively.
 
-We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that are commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a $t$-test) :
+We can calculate the standardized mean differences for every feature, and if our calculated SMD is $1$, then that means there's a $1$ standard deviation difference in means. After computing this measurement for all of our features, there is a rule of thumb that is commonly used to determine whether that feature is balanced or not (similar to the $0.05$ for $p$-value idea, which we can also use with a $t$-test) :
 * $\mathrm{SMD} < 0.1$ : For a randomized trial, the $\mathrm{SMD}$ between all of the covariates should typically fall into this bucket.
 * $0.1 < \mathrm{SMD} < 0.2$ : Not necessarily balanced, but small enough that people are usually not too worried about them. Sometimes, even after performing matching, there might still be a few covariates whose smd fall under this range.
 * $\mathrm{SMD} > 0.2$ : Values that are greater than this threshold are considered seriously imbalanced.
 
-The graph below shows the $\mathrm{SMD}$ value for different variables. We can see that about $36 \%$ of the variables are such that $\mathrm{SMD} < 0.1$ and $63 \%$ of the variables are such that $\mathrm{SMD} < 0.2$. It is clear that the distributions of the pre-treatment variables between treatment and control sets are not balanced for most of the variables.
+The graph below shows the $\mathrm{SMD}$ value for different variables, computed using the paper's original dataset. We can see that about $36 \%$ of the variables are such that $\mathrm{SMD} < 0.1$ and $63 \%$ of the variables are such that $\mathrm{SMD} < 0.2$. It is clear that the distributions of the pre-treatment variables between treatment and control sets are not balanced for most of the variables.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/InitialSMD.html"></iframe>
 
@@ -53,32 +53,29 @@ The graph below shows the $\mathrm{SMD}$ value for different variables. We can s
 
 ## Theory and background
 
-To solve the issue of the difference in variables distribution between control and treatment group, **matching** is performed. The idea is to match individuals in the treated group with similar individuals in the control group for the covariates. In the ideal case, we would like to find for each sample in the treatment group, an identical sample in the control group in terms of pre-treatment covariates. This is generally impossible but fortunately, finding similar sample in the control group is enough. The condition is that the two samples in the matched pair have probability of receiving the treatment is as close as possible. 
-This is not an exact matching as the paired samples can be slightly diffferent but the overall distribution of each pre-treatment variable is balanced between the groups, this is known as stochastic balance. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial. It enables a comparison of outcomes among treated and control samples to estimate the effect of the treatment and reducing the bias due to a potential confounder. Matching can be done in different ways.
+To solve the issue of the difference in variables distribution between control and treatment group, **matching** is performed. The idea is to match individuals in the treated group with similar individuals in the control group for the covariates. In the ideal case, we would like to find for each sample in the treatment group, an identical sample in the control group in terms of pre-treatment covariates. This is generally impossible, but fortunately, finding similar sample in the control group is enough. The condition is that the two samples in the matched pair have a probability of receiving the treatment that is as close as possible. 
+This is not an exact matching as the paired samples can be slightly diffferent, but the overall distribution of each pre-treatment variable is balanced between the groups - this is known as **stochastic balance**. Matching is a technique that attempts to control for confounding and make an observational study more like a randomised trial. It enables a comparison of outcomes among treated and control samples to estimate the effect of the treatment and reducing the bias due to a potential confounder, and it can be done in different ways.
 
 ## Replicating the paper's matching method
 
-In the paper they use the $L_{\infty}$ norm. The pairs are created based on $4$ pre-treatment variables : 
+In the paper they use the **$L_{\infty}$ norm**. The pairs are created based on $4$ pre-treatment variables : 
 * _C_blocksdirtfloor_ : Proportion of blocks with houses that has dirt floors
 * _C_HHdirtfloor_ : Proportion of households with dirt floors
 * _C_child05_ : Average number of children between $0$ and $5$ years
 * _C_households_ : Number of households
 
-They are matching on the observed covariates. The idea is to minimise the $L_{\infty}$ distance to match the pairs of control and treatment data points. The $L_{\infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{\infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
+They are therefore matching on observed covariates. The idea is to minimise the $L_{\infty}$ distance to match the pairs of control and treatment data points. The $L_{\infty}$ distance is defined as the maximum of the absolute value of the differences between the variables for each pair of treatment and control blocks. We can compute the $L_{\infty}$ distance between each possible pair of treated and control data points and minimise to obtain the final matching.
 
-In practice, we construct a bipartite graph. Each node represents a sample, treated samples are on one side of the graph and control samples are on the other side. 
-The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best set of matched pairs such that the norm is minimum.
+In practice, we construct a bipartite graph. Each node represents a sample; treated samples are on one side of the graph and control samples are on the other side. 
+The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best set of matched pairs such that the norm is minimised.
 
-The graph below represents the distribution of the $4$ variables used, after the matching step. We can compare the distribution of the treated and control subsets. Histograms partially overlap so the distributions are quite similar. 
-
-<figure> <img src="assets/img/matching_paper_dist_after.png"> </figure>
-
-The next figure is the graphical result of a $\mathrm{SMD}$ applied on the census variables after the matching step. Comparing this graph to the $\mathrm{SMD}$ graph before the matching, we can see now that $45 \%$ of the variables have $\mathrm{SMD} < 0.1$ and $64 \%$ of the variables have $\mathrm{SMD} < 0.2$. These percentages have slightly increased but we can observe that the variables with a very high $\mathrm{SMD}$ before the matching still have a high $\mathrm{SMD}$ after the matching. Therefore, by looking at the $\mathrm{SMD}$ test, it seems that the matching is not efficient. 
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PaperSMD.html"></iframe>
+The figure below represents the distributions of one of the 4 variables used for matching (_C_blocksdirtfloor_), comparing before and after the matching step. We can therefore compare the distribution of the treated and control subsets. The histograms partially overlap, so the distributions are quite similar both before and after matching, with a slight decrease in the distribution of controls after matching. Indeed, as more control data points are available than treatment, the matching step will usually match all treatments with a subset of controls, and this is observed here as all treatment data points are matched (no difference in the distributions of treatment before and after matching). 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_paper_blocks.html"></iframe>
 
+The next figure is the graphical result of a $\mathrm{SMD}$ applied on the census variables after the matching step. Comparing this graph to the $\mathrm{SMD}$ graph before the matching, we can see now that $45 \%$ of the variables have $\mathrm{SMD} < 0.1$ and $64 \%$ of the variables have $\mathrm{SMD} < 0.2$. These percentages have slightly increased but we can observe that the variables with a very high $\mathrm{SMD}$ before the matching still have a high $\mathrm{SMD}$ after the matching. Therefore, by looking at the $\mathrm{SMD}$ test, it seems that the matching is not efficient. This could be due to the fact that only 4 of the pre-treatment variables are used to match the data points, and we indeed observe an average of 7% decrease in the SMD values for the 4 matching variables. 
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/PaperSMD.html"></iframe>
 
 ## Propensity score matching
 
