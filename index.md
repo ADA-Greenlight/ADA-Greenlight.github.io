@@ -69,9 +69,17 @@ They are therefore matching on observed covariates. The idea is to minimise the 
 In practice, we construct a bipartite graph. Each node represents a sample; treated samples are on one side of the graph and control samples are on the other side. 
 The edges link one control and one treated sample, weighted with the $L_{\infty}$ norm. The aim is to minimise the norm over the matching. Thus the algorithm finds the best set of matched pairs such that the norm is minimised.
 
+<div class="withSidenote" markdown="1">
+
 The figure below represents the distributions of one of the 4 variables used for matching (_C_blocksdirtfloor_), comparing before and after the matching step. We can therefore compare the distribution of the treated and control subsets. The histograms partially overlap, so the distributions are quite similar both before and after matching, with a slight decrease in the distribution of controls after matching. Indeed, as more control data points are available than treatment, the matching step will usually match all treatments with a subset of controls, and this is observed here as all treatment data points are matched (no difference in the distributions of treatment before and after matching). 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/matching_paper_blocks.html"></iframe>
+
+<figure class="sidenote">
+    <img src="img/Confounding_img.png">
+    <figcaption><em>Figure 1.</em> The Varroa destructor in action.</figcaption>
+</figure>
+</div>
 
 The next figure is the graphical result of a $\mathrm{SMD}$ applied on the census variables after the matching step. Comparing this graph to the $\mathrm{SMD}$ graph before the matching, we can see now that $45 \%$ of the variables have $\mathrm{SMD} < 0.1$ and $64 \%$ of the variables have $\mathrm{SMD} < 0.2$. These percentages have slightly increased but we can observe that the variables with a very high $\mathrm{SMD}$ before the matching still have a high $\mathrm{SMD}$ after the matching. Therefore, by looking at the $\mathrm{SMD}$ test, it seems that the matching is not efficient. This could be due to the fact that only 4 of the pre-treatment variables are used to match the data points, and we indeed observe an average of 7% decrease in the SMD values for the 4 matching variables. 
 
