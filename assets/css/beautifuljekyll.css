@@ -602,6 +602,24 @@ footer .footer-custom-content {
   font-size: 1rem;
 }
 
+.sidenote {
+  position: fixed;
+  top: 40%;
+  right: 2rem;
+  max-width: 25rem;
+  transition: 0.2s ease-in transform;
+  transform: translateX(100%) translateX(2rem);
+}
+
+.sidenote.display {
+  transform: translateX(0);
+}
+
+figcaption {
+  text-align: center;
+  font-size: 0.8em;
+}
+
 /* --- Post and page headers --- */
 
 .intro-header {
