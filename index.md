@@ -132,11 +132,11 @@ In practice, we use in this work the `sensitivitymv` R library and more specific
 
 ## Amplification of Sensitivity Analysis
 
-The question is now to discuss the possibility of existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ?
+The question is now to discuss the possibility of the existence of an unobserved covariate. Are there other unmeasured covariates that could have an impact on the outcomes of the models ? Indeed, so far we have shown that sensitivity analysis can help quantify the bias needed to invalidate the rejection of  the no treatment effect hypothesis, but it does not yet tell us anything about the nature or existence of confounders.
 
 In order to do so, we will need to go further and decompose $\Gamma$ into two parameters : $(\Lambda, \Delta)$. These parameters are defined by : $\Gamma = \frac{\Lambda \Delta + 1}{\Lambda + \Delta}$. For each value of $\Gamma$, we can draw a graph of $\Delta$ as a function of $\Lambda$.
 
-$\Delta$ is called the shift. It measures the relationship between the unobserved covariate and the difference in outcomes within the matched pair. $\Lambda$ is called the strength and evaluates the relationship between the confounder and the difference in probability of being assigned a treatment. Thus $\Delta$ represents impact on the outcome whereas $\Lambda$ represents the impact on the treatment. With these new parameters, we can now update the scheme of section I.  
+$\Delta$ is called the <emph>shift</emph>. It measures the relationship between the unobserved covariate and the difference in outcomes within the matched pair. $\Lambda$ is called the <emph>strength</emph> and evaluates the relationship between the confounder and the difference in probability of being assigned a treatment. Thus $\Delta$ represents the impact on the outcome, whereas $\Lambda$ represents the impact on the treatment. With these new parameters, we can now update the diagram of section I.  
 
 <figure> <img src="assets/img/confounding_updated.png"> 
 <center><figcaption>Effect of confounders on treatment and outcome, in terms of $\Lambda$ and $\Delta$.</figcaption></center> </figure>
