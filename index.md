@@ -95,9 +95,8 @@ with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is con
 
 In practice, we construct a bipartite graph as explained above for the matching with $L_{\infty}$ norm. The edges are now weighted with the difference of similarity score. The similarity is defined as 1 minus the difference of propensity score, and we want to minimise the difference of propensity scores between the pairs. Equivalently, we can maximise the similarity between the pairs. The algorithm therefore finds the matching that maximises the overall similarity.
 
-The figures below illustrates the distribution of the propensity scores before and after the matching, as well as the results of the $\mathrm{SMD}$ test. Two different propensity score matchings are applied here. The first one takes into accout only the $4$ variables used in the paper's matching and the second one is a propensity score matching using all the pre-treatment census variables. There is little overlap in the distribution of propensity scores matching on all cencus variables for the treatment and control groups. The intuition is that if these additional variables are highly correlated with which sample is treated and which one is not, it means that they can potentially cause a lot of confounding and we would therefore not want to exclude them since this study aims precisely at assessing their impact. Nevertheless, the distributions don't really change before and after the matching. 
-We can improve the matching if we match only observations with similar propensities by adding a threshhold on the accepted value difference. For example, by adding a similarity threshold of 0.99, the obtained distributions have greater overlap, as expected.
-
+Two different propensity score matchings are applied in this study. The first one takes into accout only the $4$ variables used in the paper's matching, and the second one is a propensity score matching using all the pre-treatment census variables.
+The figures below illustrate the distribution of the propensity scores before and after the matching, when using all census variables. There is little overlap in the distribution of propensity scores matching for the treatment and control groups, and the distributions do not change significantly before and after matching. The intuition we could propose is that if the additional variables included in the propensity score are highly correlated with which sample is treated and which one is not, it means that they can potentially cause a lot of confounding. Therefore, we would not want to exclude them since this study aims precisely at assessing their impact. Nevertheless, as the matching does not seem to be effective, we can improve it by matching only observations with similar propensities through the addition of a threshold on the accepted value difference. For example, by adding a similarity threshold of 0.99, the obtained distributions have greater overlap after matching, as expected.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_beforematching.html"></iframe>
 
@@ -105,7 +104,7 @@ We can improve the matching if we match only observations with similar propensit
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_aftermatching_threshold.html"></iframe>
 
-The results of the $\mathrm{SMD}$ test are similar to the ones of the paper's matching. The only noticeable difference is the fact that the very high $\mathrm{SMD}$ values have decreased in amplitude.
+The results of the $\mathrm{SMD}$ test are shown below for both propensity score matching methods, and they are similar to the ones of the paper's matching. In fact, the matching does not seem to be more effective than using the $L_{\infty}$ norm, and for some variables the SMD increases significantly.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_prop4.html"></iframe>
 
