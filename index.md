@@ -104,7 +104,7 @@ The figures below illustrate the distribution of the propensity scores before an
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_aftermatching_threshold.html"></iframe>
 
-The results of the $\mathrm{SMD}$ test are shown below for both propensity score matching methods, and they are similar to the ones of the paper's matching. In fact, the matching does not seem to be more effective than using the $L_{\infty}$ norm, and for some variables the SMD increases significantly.
+The results of the $\mathrm{SMD}$ test are shown below for both propensity score matching methods, and they are similar to the ones of the paper's matching. In fact, the matching does not seem to be more effective than using the $L_{\infty}$ norm, and for some variables the SMD increases significantly. One could therefore conclude that in terms of balancing the pre-treatment covariates of the study, propensity score does not seem to be an effective solution. 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/balance_SMD_prop4.html"></iframe>
 
