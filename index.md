@@ -159,7 +159,7 @@ As previously discussed, **omitted variable bias** can affect treatment effect e
 
 To quantify this effect, we can isolate each variable used as regressors in the models and see the change incurred in $R^2$ when the regressors are not included in the model. This enables a classification of the most **predictive regressors** in terms of $R^2$. Indeed, the difference in $R^2$ corresponds to the bias that would have been incurred by omitting said variable in the model. We can then use this information to select the outcome variables which will be studied further in the sensitivity analysis of the matching, similarly to what was proposed above. The proportionate reduction in unexplained variance (named $\rho^2$) when $X$ is added as a regressor can be computed as follows: 
 
-<center> $ \rho^2 = \frac{(1 - {R^2}_{\text{no X}})-((1 - {R^2}_{\text{with X}})}{(1 - {R^2}_{\text{no X}})}$</center>
+<center> $ \rho^2 = \frac{(1 - {R^2}_{\text{no X}})-(1 - {R^2}_{\text{with X}})}{(1 - {R^2}_{\text{no X}})}$</center>
 
 This is equivalent to saying that the square of the bias due to omitting a covariate is linear in the fraction by which that covariate would reduce unexplained variance.
 The figures below show the results obtained for the regressors of model 3 in the paper, for Tables 4 and 6. 
