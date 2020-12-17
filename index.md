@@ -100,6 +100,8 @@ The figures below illustrate the distribution of the propensity scores before an
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_beforematching.html"></iframe>
 
+The figure above shows the propensity score distribution before matching. Below, the two matching methods are applied and the results on the distributions for treatment and control groups can be observed. When no threshold is applied, the control group distribution decreased slightly, as was observed with the $L_{\infty}$ norm matching. When the 0.99 similarity threshold is applied, the distributions match very closely, as expected.
+
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_aftermatching.html"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="110%" height="500" allowfullscreen="true" src="assets/img/matching_prop_all_aftermatching_threshold.html"></iframe>
