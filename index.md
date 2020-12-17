@@ -170,7 +170,7 @@ For Table 6, _S_electricity_, _S_waterhouse_, _S_garbage_ are the most important
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
 
-Using these results, we can look at the sensitivity of these outcomes in terms of $\Gamma$. It turns out that applying the same methodology as the sensitivity analysis of the regressed outcomes, we find that all 5 variables have higher p-values than 0.05 for $\Gamma = 1$, which shows that these for these outcomes we cannot reject the null hypothesis of no treatment effect.
+Using these results, we can look at the sensitivity of these outcomes in terms of $\Gamma$. It turns out that applying the same methodology as the sensitivity analysis of the regressed outcomes, we find that all 5 variables have higher $p$-values than 0.05 for $\Gamma = 1$, which shows that these for these outcomes we cannot reject the null hypothesis of no treatment effect.
 
 ---------------------------
 
