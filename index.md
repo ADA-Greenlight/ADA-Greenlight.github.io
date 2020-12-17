@@ -13,7 +13,7 @@ In this extension, we propose to conduct a robustness check to verify the matchi
 
 ### Context
  
-In the paper 'Housing, Health and Happiness', the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to 50m² of cement floor. It was established by the Mexican government in $2000$ in the State of Coahuila first, then in $2004$ in the state of Durango. The study observes the evolution of two populations in two twin cities: Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps: verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
+In the paper ['Housing, Health and Happiness'](https://www.aeaweb.org/articles?id=10.1257/pol.1.1.75), the aim is to measure the impact of replacing dirt floors with cement floors in Mexico, on health and welfare of young children and their mothers. A large-scale program called Piso Firme offered households up to 50m² of cement floor. It was established by the Mexican government in $2000$ in the State of Coahuila first, then in $2004$ in the state of Durango. The study observes the evolution of two populations in two twin cities: Gomez Palacios and Lerdo, State of Coahuila (group control) and Torreon, State of Durango (group treatment). They are geographically close but the beginning of the program implementation differ as they are in two different states. They proceded in three steps: verification that control and treatment groups are well balanced, estimation of the program impact and examination of the robustness of the results. Their verification showed that both control and treatment groups were balanced on all levels before the program. Their conclusion was that the Piso Firme program improved health and welfare of young children and their parents. The cement floors significantly reduced the number of cases of parasitic infestations, diarrhea, anemia and then improved the health and cognitive development of the children. They also increased happiness and quality of life of adults as well as decreased depression.
 
 ---------------------------
 
@@ -58,7 +58,7 @@ This is not an exact matching as the paired samples can be slightly diffferent, 
 
 ## Replicating the paper's matching method
 
-In the paper they use the **$L_{\infty}$ norm**. The pairs are created based on $4$ pre-treatment variables : 
+In the paper they use the $\bold{L_{\infty}}$ **norm**. The pairs are created based on $4$ pre-treatment variables : 
 * _C_blocksdirtfloor_ : Proportion of blocks with houses that has dirt floors
 * _C_HHdirtfloor_ : Proportion of households with dirt floors
 * _C_child05_ : Average number of children between $0$ and $5$ years
