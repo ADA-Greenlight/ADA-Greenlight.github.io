@@ -196,6 +196,8 @@ To further this analysis, which has proved to be insightful in determining the r
 
 ### Resources 
 
+* [Cattaneo, Matias D., Sebastian Galiani, Paul J. Gertler, Sebastian Martinez, and Rocio Titiunik. 2009. _"Housing, Health, and Happiness."_ American Economic Journal: Economic Policy, 1 (1): 75-105.](https://www.aeaweb.org/articles?id=10.1257/pol.1.1.75)
+
  * [Paul R. Rosenbaum, _Design of observational studies_, Springer series in Statistics. 2010](https://www.springer.com/gp/book/9783030464042)
  
  * [Paul R. Rosenbaum, _Observation & Experiment : An Introduction to Causal Inference_, Harvard University Press, 2017](https://onlinelibrary.wiley.com/doi/full/10.1111/insr.12259)
