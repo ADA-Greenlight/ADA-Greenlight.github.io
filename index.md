@@ -153,8 +153,6 @@ Let's concentrate on the outcome _S_shcementfloor_. We measure a sensitivity of 
 <figure> <img src="assets/img/amplification_rect.png"> 
 <center><figcaption>Amplification of sensitivity analysis for $\Gamma = 3.25$.</figcaption></center> </figure> 
 
----------------------------
-
 ## Further analysis - Influencial Regressors in the Regression Analysis
 
 As previously discussed, **omitted variable bias** can affect treatment effect estimates obtained from observational data due to the lack of random assignment to treatment groups. Sensitivity analyses adjust these estimates to quantify the impact of the non-randomised assignement and the potential omitted variables. As a further step in our sensitivity analysis, we could investigate which outcomes to consider specifically for the sensitivity analysis, and to do so we can use the available data to establish reference points for speculation about omitted confounders. For example, we can look at the effect of regressors used in the linear regression models proposed in the paper on $R^2$, a statistical measure that represents the **proportion of the variance** for a dependent variable that is **explained by an independent variable or variables in a regression model**. So, if the $R^2$ of a model is $0.50$, then approximately half of the observed variation can be explained by the model's inputs. 
