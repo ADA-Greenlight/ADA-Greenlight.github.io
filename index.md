@@ -143,45 +143,55 @@ $\Delta$ is called the <emph>shift</emph>. It measures the relationship between 
 
 ## Results - Sensitivity analysis of the different matching methods
 
-The figure below shows the results in terms of the value of $\Gamma$ for the different matchings : the paper's matching method using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity score matching with all the variables performs overall slightly worse than the two other matchings. The results are uneven among the different outcomes. We can observe that the outcomes describing the presence of cement floor in the different rooms of the house (Table 4 of the original paper) are the less sensible to bias, followed by the satisfaction outcomes (Table 6). For _S_pss_ and _S_cesds_, a $p$-value $> 0.05$ is reached for $\Gamma = 1$, which means not only these outcomes are extremely sensible to bias, but we cannot reject the null hypothesis of no treatment effect. This result is obtained for the three different matchings. _S_pss_ and _S_cesds_ are the outcomes measuring the percieved stress scale and the depression scale respectively. These results could be explained by the fact that the outcomes measuring the fraction of cement floors in the rooms are more easily measured as they are a physical change, compared to the stress or depression that are mental states and therefore more subjective.
+The figure below shows the results in terms of the value of $\Gamma$ for the different matchings : the paper's matching method using $L_{\infty}$ norm, a propensity score matching using all the variables of the census and a propensity score matching using only the four variables used in the paper. The displayed value of $\Gamma$ is the smallest value for which the $p$-value of the statistical test reaches the significance level of $0.05$. We can see that the propensity score matching with all the variables performs overall slightly worse than the two other matchings. The results are uneven among the different outcomes. We can observe that the outcomes describing the presence of cement floor in the different rooms of the house (Table 4 of the original paper) are the less sensible to bias, followed by the satisfaction outcomes (Table 6). For _S_pss_ and _S_cesds_, a $p$-value $> 0.05$ is reached for $\Gamma = 1$, which means not only these outcomes are extremely sensitive to bias, but we cannot reject the null hypothesis of no treatment effect. This result is obtained for the three different matchings. _S_pss_ and _S_cesds_ are the outcomes measuring the percieved stress scale and the depression scale respectively. These results could be explained by the fact that the outcomes measuring the fraction of cement floors in the rooms are more easily measured as they are a physical change, compared to the stress or depression that are mental states and therefore more subjective.
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="120%" height="500" allowfullscreen="true" src="assets/img/Gamma_fig.html"></iframe>
 
 Let's concentrate on the outcome _S_shcementfloor_. We measure a sensitivity of $\Gamma = 3.25$ using the matching of the paper. This corresponds to a probability of treatment comprised in $\[\frac{1}{1 + \Gamma}, \frac{\Gamma}{1 + \Gamma} \] = \[0.23, 0.76 \]$ which would violate the hypothesis of randomised treatment assignment. Furthermore, to put into question the conclusion of a treatment effect, we would need to find an **unmeasured covariate** that would influence the treatment probability such that the odds of being treated would be $3.25$ times higher for two people with same measured covariates. The next step is the amplification of the sensitivity analysis. The result is shown in the graph below. All combinaisons $(\Lambda, \Delta)$ such that $\Gamma = 3.25$ form the blue curve. The vertical and horizontal dashed lines corresponds to $\Gamma = 3.25$, which is also the asymptotes of the curve, when taking one of the parameters going to $\infty$. All combinations above the curve lead to $p < 0.05$ which means that the treatment has significant effects. On the opposite, all combinations below the curve lead to $p > 0.05$ which means that there are no significant effects of the treatment. Let's take an example : $(\Lambda, \Delta) = (6, 7)$ corresponds to an unobserved covariate that would multiplie by $6$ the odds of treatment and multiplies the odds of a positive pair difference in the outcomes by $7$.
-Overall, the results show that the cement floor outcome variables are less sensitive to bias, whilst the satisfaction and mental health outcomes are sensitive to small biases.
+**Overall, the results show that the cement floor outcome variables are less sensitive to bias, whilst the satisfaction and mental health outcomes are sensitive to small biases.**
 
 <figure> <img src="assets/img/amplification_rect.png"> 
 <center><figcaption>Amplification of sensitivity analysis for $\Gamma = 3.25$.</figcaption></center> </figure> 
 
 ---------------------------
 
-## Regression Analysis
+## Further analysis - Influencial Regressors in the Regression Analysis
+
+As previously discussed, **omitted variable bias** can affect treatment effect estimates obtained from observational data due to the lack of random assignment to treatment groups. Sensitivity analyses adjust these estimates to quantify the impact of the non-randomised assignement and the potential omitted variables. As a further step in our sensitivity analysis, we could investigate which outcomes to consider specifically for the sensitivity analysis, and to do so we can use the available data to establish reference points for speculation about omitted confounders. For example, we can look at the effect of regressors used in the linear regression models proposed in the paper on $R^2$, a statistical measure that represents the **proportion of the variance** for a dependent variable that is **explained by an independent variable or variables in a regression model**. So, if the $R^2$ of a model is $0.50$, then approximately half of the observed variation can be explained by the model's inputs. 
+
+To quantify this effect, we can isolate each variable used as regressors in the models and see the change incurred in $R^2$ when the regressors are not included in the model. This enables a classification of the most **predictive regressors** in terms of $R^2$. Indeed, the difference in $R^2$ corresponds to the bias that would have been incurred by omitting said variable in the model. We can then use this information to select the outcome variables which will be studied further in the sensitivity analysis of the matching, similarly to what was proposed above. The proportionate reduction in unexplained variance (named $\rho^2$) when $X$ is added as a regressor can be computed as follows: 
+
+<center> $ \rho^2 = \frac{(1 - {R^2}_{\text{no X}})-((1 - {R^2}_{\text{with X}})}{(1 - {R^2}_{\text{no X}})}$</center>
+
+This is equivalent to saying that the square of the bias due to omitting a covariate is linear in the fraction by which that covariate would reduce unexplained variance.
+The figures below show the results obtained for the regressors of model 3 in the paper, for Tables 4 and 6. 
+We observe that the outcome variables _S_waterhouse_, _S_headeduc_, _S_HHpeople_ are the most predicting in for the studied variables in Tables 4.
+For Table 6, _S_electricity_, _S_waterhouse_, _S_garbage_ are the most important in terms of changes to the unexplained variance. 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="103%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T4.html"></iframe>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="500" allowfullscreen="true" src="assets/img/Bias_Figure_T6.html"></iframe>
 
+Using these results, we can then look at the sensitivity of these outcomes in terms of $\Gamma$. It turns out that applying the same methodology as the sensitivity analysis of the regressed outcomes, we find that all 5 variables have higher p-values than 0.05 for $\Gamma = 1$, which shows that these for these outcomes we cannot reject the null hypothesis of no treatment effect.
+
 ---------------------------
 
 ### IV. Conclusion
 
-Answer the research questions :
-* Most important variables in the data set in terms of predicting power for the studied models : ...
-Regression analysis : If there is a water connection inside the house. 
+The methodology presented in this study allowed to further check the robustness of the results presented in the paper 'Housing, Health and Happiness'.
+As the original paper did containing any statistical test to check the balance of the treatment and control groups, SMD was used to verify the balance and various matching methods were tested to attempt to improve overall balance. Moreover, a sensitivity analyis assessing bias and the effect of confounders was carried out.
+
+To conclude the findings of this extension study on the paper, our results show that:
     
-* Potential bias to alter the conclusions of the study :
-The method of the paper is ... to small/high bias.
-This method allowed us to study the robustness of the results.
-This paper wasn't containing any statistical test. 
+* Overall, the results of the paper for Tables 4 and 6 are indeed sensitive to bias, especially for the outcomes linked to mental health and satisfaction.
 
-* Would propensity score matching (or another matching method) improve the accuracy of the results ?
-It seems that propensity score doesn't improve the results.
-Using too many variables is not a good thing for matching. 
+* Propensity score matching does not seem to improve the balance of the data sets, which could point towards potential weaknesses of the method.
 
-Matching and SMD : SMD not really improved.
-Criticise : control sets is already matched. As in the paper they say that control samples are chosen by minimising L_infinite norm. It would have been better to have the initial control set that is bigger and not already matched. Matching might have been more efficient in that case.
+* The SMD was not improved through the various matching methods. This could be due to the fact that the control set available is already matched, and so to further confirm the results shown above it would be ideal to have the initial control set that is bigger and not already matched. In that case, the matching would likely have been more efficient.
 
-Direction for future studies : apply the same analysis to the outcomes describing the health of the children : _S_diarrhea_, _S_anemia_, _S_S_mccdts_ and _S_pbdypct_. We didn't do this analysis due to a lack of time.
+* The most important variables in the data set in terms of predicting power for the studied regression models are very sensitive to bias, and we cannot reject the null hypothesis of no treatment effect for those outcomes. 
+
+To further this analysis, which has proved to be insightful in determining the robustness and validity of results presented in this observational studies, we could apply the same methodology to the outcomes describing the health of the children : _S_diarrhea_, _S_anemia_, _S_S_mccdts_ and _S_pbdypct_, which were not presented here.
 
 ---------------------------
 
