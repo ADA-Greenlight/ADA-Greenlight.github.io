@@ -141,7 +141,7 @@ In order to do so, we will need to go further and decompose $\Gamma$ into two pa
 
 $\Delta$ is called the <emph>shift</emph>. It measures the relationship between the unobserved covariate and the difference in outcomes within the matched pair. $\Lambda$ is called the <emph>strength</emph> and evaluates the relationship between the confounder and the difference in probability of being assigned a treatment. Thus $\Delta$ represents the impact on the outcome, whereas $\Lambda$ represents the impact on the treatment. With these new parameters, we can now update the diagram of section I.  
 
-<figure> <img src="assets/img/confounding_updated.png"> 
+<figure> <img src="assets/img/Confounding_img_updated.png"> 
 <center><figcaption>Effect of confounders on treatment and outcome, in terms of $\Lambda$ and $\Delta$.</figcaption></center> </figure>
 
 ## Results - Sensitivity analysis of the different matching methods
