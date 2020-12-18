@@ -185,7 +185,7 @@ As the original paper didn't contain any statistical test to check the balance o
 To conclude the findings of this extension study on the paper, our results show that:
     
 * Overall, the results of the paper for Tables 4 and 6 are indeed sensitive to bias, especially for the outcomes linked to mental health and satisfaction.
-The cement floor outcomes are not sensitive to small biases, statisfaction outcomes are sensible to small biases and the hypothesis of an effect of treatment on mental health outcomes is put into question.
+The cement floor outcomes are not sensitive to small biases, satisfaction outcomes are sensitive to small biases and the hypothesis of an effect of treatment on mental health outcomes is put into question.
 
 * Propensity score matching does not seem to improve the balance of the data sets, which could point towards potential weaknesses of the method. Using all measured covariates to estimate the propensity score doesn't seem to be the best strategy, even tough we could think that it would bring more knowledge to the score. Carefully selecting some of variables that are related to the outcomes might be an improvement. 
 
