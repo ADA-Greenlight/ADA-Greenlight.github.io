@@ -89,7 +89,8 @@ The next figure is the graphical result of a $\mathrm{SMD}$ applied on the censu
 
 Another method used for matching is based on what is called **propensity score**. In this case, the goal is that the two samples of the pair have the same probability to be treated. For subject $l$, the probability of being treated given full knowledge of the world is : 
 
-<center> $\pi_{l} = \mathbb{P}(Z_{l} = 1 \mid r_{Cl}, r_{Tl}, \bold{x_{l}}, u_{l})$ <center>
+<center> $\pi_{l} = \mathbb{P}(Z_{l} = 1 \mid r_{Cl}, r_{Tl}, \bold{x_{l}}, u_{l})$ </center>
+
 
 with $Z_l$ the treatment assignment, $r_{Cl}$ the response if the subject is control, $r_{Tl}$ the response if the subject is treated, $\bold{x_{l}}$ the observed covariates and $u_{l}$ the unobserved covariates. Instead of matching on observed covariates directly, the idea is to reduce the information of all the pre-treatment covariates to one single number called the propensity score. Of course, the formula above is idealistic as we don't know all these variables. In practice, we can estimate $\pi_{l}$ for every sample using a **logistic regression** on $\bold{x_{l}}$. By doing so, the samples with equal propensity score are guaranted to have equal distributions of observed variables. The samples in the same pair might not have equal $\bold{x}$, but total treatment and control groups will have the same distribution. 
 
