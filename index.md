@@ -125,7 +125,7 @@ Matching can improve the veracity of the results. It ensures that similar sample
 
 The intuition is that the naive model would be wrong if there exists a confounder sufficiently important to modify the probability of being treated by a certain amount. Let's be more precise - the model assumes that the odds of two similar data points (i.e. very similar observed covariates) are bounded by a factor $\Gamma$ : $ \frac{1}{\Gamma} \leq \frac{\pi_k(1 - \pi_k)}{\pi_l(1 - \pi_l)} \leq \Gamma $. For example, if $\Gamma = 3$, the odds ratio is comprised between $1/3$ and $3$, and the probabilty of being treated is comprised between $0.25$ and $0.75$. 
 
-For each value of Gamma, we use a statistical test with the following hypotheses :
+For each value of $\Gamma$, we use a statistical test with the following hypotheses :
 * $H_0$ : No treatment effect on the model.
 * $H_1$ : A treatment effect on the model.
 
